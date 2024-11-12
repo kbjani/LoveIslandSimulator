@@ -2,9 +2,14 @@ package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class HomeController {
+import java.io.IOException;
 
+public class HelpController {
     private LoveIslandSimulatorApp app;
 
     public void setApp(LoveIslandSimulatorApp app) {
@@ -12,16 +17,9 @@ public class HomeController {
     }
 
     @FXML
-    protected void onStartButtonClick() {
+    protected void onBackButtonClick() {
         if (app != null) {
-            app.showGameScene();
-        }
-    }
-
-    @FXML
-    protected void onHelpButtonClick() {
-        if (app != null) {
-            app.showHelpScene();
+            app.showHomeScene();
         }
     }
 }
