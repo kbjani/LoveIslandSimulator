@@ -1,4 +1,6 @@
-package com.example.loveislandsimulator;
+package com.loveislandsimulator.services;
+
+import com.loveislandsimulator.models.Islander;
 
 import java.util.HashMap;
 import java.util.Map;

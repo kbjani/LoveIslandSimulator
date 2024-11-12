@@ -1,4 +1,7 @@
-package com.example.loveislandsimulator;
+package com.loveislandsimulator.challenges;
+
+import com.loveislandsimulator.models.ChallengeCommand;
+import com.loveislandsimulator.models.Islander;
 
 public class TriviaChallenge implements ChallengeCommand {
     @Override

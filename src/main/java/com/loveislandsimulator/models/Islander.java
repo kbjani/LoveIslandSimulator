@@ -1,4 +1,6 @@
-package com.example.loveislandsimulator;
+package com.loveislandsimulator.models;
+
+import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 
 import java.io.Serializable;
 

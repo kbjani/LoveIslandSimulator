@@ -1,4 +1,7 @@
-package com.example.loveislandsimulator;
+package com.loveislandsimulator.strategies;
+
+import com.loveislandsimulator.models.ChallengeCommand;
+import com.loveislandsimulator.models.Islander;
 
 public class BalancedStrategy implements IslanderBehaviorStrategy {
     @Override
