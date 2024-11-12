@@ -134,7 +134,7 @@
                         <id>default-cli</id>
                         <configuration>
                             <mainClass>
-                                com.example.loveislandsimulator/com.example.loveislandsimulator.LoveIslandSimulatorApp
+                                com.example.loveislandsimulator/com.loveislandsimulator.LoveIslandSimulatorApp
                             </mainClass>
                             <launcher>app</launcher>
                             <jlinkZipName>app</jlinkZipName>
