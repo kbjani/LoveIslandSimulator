@@ -1,27 +1,23 @@
 package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
-import javafx.fxml.FXML;
+import com.loveislandsimulator.models.AppController;
 
-public class HomeController {
+public class HomeController implements AppController {
 
     private LoveIslandSimulatorApp app;
 
+    @Override
     public void setApp(LoveIslandSimulatorApp app) {
         this.app = app;
     }
 
-    @FXML
-    protected void onStartButtonClick() {
-        if (app != null) {
-            app.showGameScene();
-        }
+    public void onStartButtonClick() {
+        app.getSceneController().switchTo("game");
     }
 
-    @FXML
-    protected void onHelpButtonClick() {
-        if (app != null) {
-            app.showHelpScene();
-        }
+    public void onHelpButtonClick() {
+        app.getSceneController().switchTo("help");
     }
 }
+

@@ -2,23 +2,19 @@ package com.loveislandsimulator;
 
 import com.loveislandsimulator.challenges.PhysicalChallenge;
 import com.loveislandsimulator.challenges.TriviaChallenge;
-import com.loveislandsimulator.controllers.HelpController;
-import com.loveislandsimulator.controllers.HomeController;
+import com.loveislandsimulator.controllers.SceneController;
 import com.loveislandsimulator.models.ChallengeCommand;
 import com.loveislandsimulator.models.Islander;
 import com.loveislandsimulator.services.ScoreTrackerSingleton;
 import com.loveislandsimulator.strategies.AggressiveStrategy;
 import com.loveislandsimulator.strategies.PassiveStrategy;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
 
 public class LoveIslandSimulatorApp extends Application {
-    private Stage stage;
-    private Scene homeScene, gameScene, helpScene;
+    private SceneController sceneController;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
@@ -41,56 +37,32 @@ public class LoveIslandSimulatorApp extends Application {
         System.out.println("Current Scores: " + tracker.getScoreData());
 
         // UI Startup
-        this.stage = primaryStage;
-        stage.setTitle("Love Island Game Show Simulator");
+        this.sceneController = new SceneController(primaryStage);
 
-        // Load each FXML into a Scene
-        homeScene = loadScene("home-view.fxml");
-        //gameScene = loadScene("islander-setup-view.fxml");
-        helpScene = loadScene("help-view.fxml");
+        // Initialize scenes
+        sceneController.addScene("home", "home-view.fxml", this);
+        sceneController.addScene("help", "help-view.fxml", this);
 
-        stage.setScene(homeScene);
-        stage.setWidth(1024);
-        stage.setHeight(768);
-        stage.show();
+        /* TODO: Implement additional views
+        sceneController.addScene("assign-challenge", "assign-challenge-view.fxml", this);
+        sceneController.addScene("challenge-results", "challenge-results-view.fxml", this);
+        sceneController.addScene("error", "error-view.fxml", this);
+        sceneController.addScene("game-result", "game-result-view.fxml", this);
+        sceneController.addScene("islander-info", "islander-info-view.fxml", this);
+        sceneController.addScene("islander-info", "islander-info-view.fxml", this);
+        sceneController.addScene("islander-setup", "islander-setup-view.fxml", this);
+        sceneController.addScene("islander-view", "islander-view.fxml", this);
+         */
+
+        // Show initial scene
+        sceneController.showInitialScene("home");
     }
 
-    public void setScene(Scene scene) {
-        stage.setScene(scene);
-    }
-
-    public void showGameScene() {
-        setScene(gameScene);
-    }
-
-    public void showHelpScene() {
-        setScene(helpScene);
-    }
-
-    public void showHomeScene() {
-        setScene(homeScene);
+    public SceneController getSceneController() {
+        return sceneController;
     }
 
     public static void main(String[] args) {
         launch();
     }
-
-    // Utility to load FXML as Scene
-    private Scene loadScene(String fxmlFile) throws IOException {
-        FXMLLoader loader = new FXMLLoader(LoveIslandSimulatorApp.class.getResource(fxmlFile));
-        Scene scene = new Scene(loader.load(), 1024, 768);
-
-        // Set the app instance in the controller if it exists
-        Object controller = loader.getController();
-        if (controller instanceof HomeController) {
-            ((HomeController) controller).setApp(this);
-        }
-
-        if (controller instanceof HelpController) {
-            ((HelpController) controller).setApp(this);
-        }
-
-        return scene;
-    }
-
 }
