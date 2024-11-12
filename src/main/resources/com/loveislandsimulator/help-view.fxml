@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox alignment="CENTER" prefHeight="768.0" prefWidth="1024.0" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loveislandsimulator.controllers.HelpController">
+   <children>
+      <Label text="Love Island Game Show Simulator">
+         <font>
+            <Font name="System Bold" size="36.0" />
+         </font>
+      </Label>
+      <Label prefHeight="77.0" prefWidth="828.0" text="Love Island Game Show Simulator is a reality game show where contestants (“islanders”) interact, participate in challenges, and earn scores based on their performance and behaviors. " wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="17.0" prefWidth="835.0" text="How to Play:" underline="true">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="17.0" prefWidth="835.0" text="1. Start a new game.">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="59.0" prefWidth="834.0" text="2. Set up each islander (contestants), assigning names, strategies, and role(s) for each. These options can also be randomized by selecting the &quot;Randomize&quot; button." wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="59.0" prefWidth="834.0" text="3. Click &quot;Start Game&quot;, select challenges and simulate the results for each. The minimum number of challenges is 3, however more can be included if desired." wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="48.0" prefWidth="834.0" text="4. Select &quot;End Game&quot; to complete the game and view the winners, along with the leaderboard ranking of all islanders. " wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label prefHeight="44.0" prefWidth="834.0" text="5. Either select &quot;New Game&quot; to create a new game, or &quot;Quit&quot; to close the application." wrapText="true">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Button mnemonicParsing="false" onAction="#onBackButtonClick" text="Back">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>

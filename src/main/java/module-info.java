@@ -11,6 +11,8 @@ module com.example.loveislandsimulator {
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
 
-    opens com.example.loveislandsimulator to javafx.fxml;
-    exports com.example.loveislandsimulator;
+    opens com.loveislandsimulator to javafx.fxml;
+    exports com.loveislandsimulator;
+    exports com.loveislandsimulator.controllers;
+    opens com.loveislandsimulator.controllers to javafx.fxml;
 }
