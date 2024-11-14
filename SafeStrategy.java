@@ -1,13 +1,13 @@
 // Love Island Simulation
 // Main method to test program is in TestSimulation.java
 
-public class AggressiveStrategy implements BehaviorStrategy {
+public class SafeStrategy implements BehaviorStrategy {
     
     // METHODS
-
+    
     @Override
     public double getStrategyScoreFactor() {
-        return .96;
+        return 0.89;
     }
     @Override
     public String getStrategyDescription() {
@@ -17,5 +17,4 @@ public class AggressiveStrategy implements BehaviorStrategy {
     public void applyBehavior(Islander islander) {
         // fill in later
     }
-
 }
