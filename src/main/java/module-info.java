@@ -17,4 +17,6 @@ module com.example.loveislandsimulator {
     opens com.loveislandsimulator.controllers to javafx.fxml;
     exports com.loveislandsimulator.controllers.base;
     opens com.loveislandsimulator.controllers.base to javafx.fxml;
+    exports com.loveislandsimulator.controllers.components;
+    opens com.loveislandsimulator.controllers.components to javafx.fxml;
 }
