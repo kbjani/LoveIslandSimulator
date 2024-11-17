@@ -9,5 +9,13 @@ public class ChallengeResultsController implements AppController {
     public void setApp(LoveIslandSimulatorApp app) {
         this.app = app;
     }
+
+    public void onNextChallengeButtonClick() {
+        app.getSceneController().switchTo("assign-challenge");
+    }
+
+    public void onEndGameButtonClick(){
+        app.getSceneController().switchTo("game-result");
+    }
 }
 

@@ -9,4 +9,13 @@ public class AssignChallengeController implements AppController {
     public void setApp(LoveIslandSimulatorApp app) {
         this.app = app;
     }
+
+    public void onRandomButtonClick() {
+        // TODO: Select a random challenge on the dropdown
+    }
+
+    public void onSimulateButtonClick() {
+        // TODO: Validate fields and catch errors
+        app.getSceneController().switchTo("challenge-results");
+    }
 }
