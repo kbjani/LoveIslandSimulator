@@ -5,6 +5,8 @@ import com.loveislandsimulator.challenges.TriviaChallenge;
 import com.loveislandsimulator.controllers.base.SceneController;
 import com.loveislandsimulator.models.ChallengeCommand;
 import com.loveislandsimulator.models.Islander;
+import com.loveislandsimulator.roles.FlirtRole;
+import com.loveislandsimulator.roles.OutsiderRole;
 import com.loveislandsimulator.services.ScoreTrackerSingleton;
 import com.loveislandsimulator.strategies.AggressiveStrategy;
 import com.loveislandsimulator.strategies.PassiveStrategy;
@@ -20,6 +22,9 @@ public class LoveIslandSimulatorApp extends Application {
     public void start(Stage primaryStage) throws IOException {
         Islander john = new Islander("John");
         Islander emma = new Islander("Emma");
+
+        john = new FlirtRole(john);
+        emma = new OutsiderRole(emma);
 
         john.setBehaviorStrategy(new AggressiveStrategy());
         emma.setBehaviorStrategy(new PassiveStrategy());
