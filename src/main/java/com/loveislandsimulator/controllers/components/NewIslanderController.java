@@ -3,13 +3,15 @@ package com.loveislandsimulator.controllers.components;
 import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.enums.Strategies;
 import com.loveislandsimulator.models.AppController;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXML;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.io.InputStream;
-import java.util.Arrays;
 
 public class NewIslanderController implements AppController {
     private LoveIslandSimulatorApp app;
@@ -19,6 +21,21 @@ public class NewIslanderController implements AppController {
 
     @FXML
     private ImageView avatarImage;
+
+    @FXML
+    private TextField nameField;
+
+    @FXML
+    private CheckBox leaderCheckBox;
+
+    @FXML
+    private CheckBox outsiderCheckBox;
+
+    @FXML
+    private CheckBox flirtCheckBox;
+
+    @FXML
+    private CheckBox doubleFacedCheckBox;
 
     public void setApp(LoveIslandSimulatorApp app) {
         this.app = app;
@@ -43,11 +60,36 @@ public class NewIslanderController implements AppController {
         }
     }
 
+    public TextField getNameField() {
+        return nameField;
+    }
+
+    public ComboBox<String> getStrategyComboBox() {
+        return strategyComboBox;
+    }
+
+    public CheckBox getLeaderCheckBox() {
+        return leaderCheckBox;
+    }
+
+    public CheckBox getOutsiderCheckBox() {
+        return outsiderCheckBox;
+    }
+
+    public CheckBox getFlirtCheckBox() {
+        return flirtCheckBox;
+    }
+
+    public CheckBox getDoubleFacedCheckBox() {
+        return doubleFacedCheckBox;
+    }
+
     /**
      * Initializes the strategy options for the islander.
      */
     private void initializeStrategies(){
         for (Strategies strategy : Strategies.values()) {
             strategyComboBox.getItems().add(strategy.toString());
-        }    }
+        }
+    }
 }

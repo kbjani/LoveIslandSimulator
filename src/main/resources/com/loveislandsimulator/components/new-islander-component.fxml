@@ -23,17 +23,17 @@
       <ImageView fx:id="avatarImage" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
          <children>
-            <TextField text="Islander Name" />
+            <TextField fx:id="nameField" promptText="Islander Name" />
             <ComboBox fx:id="strategyComboBox" prefWidth="150.0" promptText="Select Strategy" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Roles:" wrappingWidth="197.04351806640625" />
-            <CheckBox mnemonicParsing="false" text="Leader" />
-            <CheckBox mnemonicParsing="false" text="Outsider" />
-            <CheckBox mnemonicParsing="false" text="Flirt" />
-            <CheckBox mnemonicParsing="false" text="Double Faced" />
+            <CheckBox fx:id="leaderCheckBox" mnemonicParsing="false" text="Leader" />
+            <CheckBox fx:id="outsiderCheckBox" mnemonicParsing="false" text="Outsider" />
+            <CheckBox fx:id="flirtCheckBox" mnemonicParsing="false" text="Flirt" />
+            <CheckBox fx:id="doubleFacedCheckBox" mnemonicParsing="false" text="Double Faced" />
          </children>
       </VBox>
    </children>

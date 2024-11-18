@@ -2,16 +2,26 @@ package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.controllers.components.NewIslanderController;
+import com.loveislandsimulator.enums.Strategies;
 import com.loveislandsimulator.models.AppController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Random;
 
 public class IslanderSetupController implements AppController {
     private LoveIslandSimulatorApp app;
+    private final String[] names = {"Alex", "Jordan", "Taylor", "Casey", "Riley", "Morgan", "Jamie", "Drew", "Sydney", "Peyton"};
+    private FXMLLoader loader;
+    private final ArrayList<NewIslanderController> controllers = new ArrayList<>(); // Store controllers
+
 
     @FXML
     private HBox islandersContainer;
@@ -30,11 +40,13 @@ public class IslanderSetupController implements AppController {
 
             // Add 10 components in pairs of 2
             for (int i = 0; i < 10; i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/components/new-islander-component.fxml"));
+                loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/components/new-islander-component.fxml"));
                 GridPane islanderComponent = loader.load();
 
                 // Access the controller to set the avatar
                 NewIslanderController controller = loader.getController();
+                controllers.add(controller);
+
                 String avatarFileName = "avatar" + (i + 1) + ".png";
                 controller.setAvatar(avatarFileName);
 
@@ -51,7 +63,37 @@ public class IslanderSetupController implements AppController {
     }
 
     public void onRandomizeButtonClick() {
-        // TODO: Randomize all islander information
+        Random random = new Random();
+
+       ArrayList<String> strategies = new ArrayList<>();
+        for (Strategies strategy : Strategies.values()) {
+            strategies.add(strategy.toString());
+        }
+
+
+        GridPane gridPane = (GridPane) islandersContainer.getChildren().get(0);
+        controllers.forEach(controller -> {
+            // Randomize name
+            TextField nameField = controller.getNameField();
+            nameField.setText(names[random.nextInt(names.length)]);
+
+            // Randomize strategy ComboBox
+            ComboBox<String> strategyComboBox = controller.getStrategyComboBox();
+            strategyComboBox.getItems().clear();
+            strategyComboBox.getItems().addAll(strategies);
+            strategyComboBox.setValue(strategies.get(random.nextInt(strategies.size())));
+
+            // Randomize role CheckBoxes
+            CheckBox leaderCheckBox = controller.getLeaderCheckBox();
+            CheckBox outsiderCheckBox = controller.getOutsiderCheckBox();
+            CheckBox flirtCheckBox = controller.getFlirtCheckBox();
+            CheckBox doubleFacedCheckBox = controller.getDoubleFacedCheckBox();
+
+            leaderCheckBox.setSelected(random.nextBoolean());
+            outsiderCheckBox.setSelected(random.nextBoolean());
+            flirtCheckBox.setSelected(random.nextBoolean());
+            doubleFacedCheckBox.setSelected(random.nextBoolean());
+        });
     }
 
     public void onStartButtonClick() {
