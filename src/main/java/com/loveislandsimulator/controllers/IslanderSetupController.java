@@ -5,7 +5,6 @@ import com.loveislandsimulator.controllers.components.NewIslanderController;
 import com.loveislandsimulator.models.AppController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 
@@ -31,7 +30,7 @@ public class IslanderSetupController implements AppController {
 
             // Add 10 components in pairs of 2
             for (int i = 0; i < 10; i++) {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/new-islander-component.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/components/new-islander-component.fxml"));
                 GridPane islanderComponent = loader.load();
 
                 // Access the controller to set the avatar

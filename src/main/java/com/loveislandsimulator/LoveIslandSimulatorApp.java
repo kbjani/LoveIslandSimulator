@@ -46,7 +46,6 @@ public class LoveIslandSimulatorApp extends Application {
 
         // Initialize scenes
         //components
-        sceneController.addScene("new-islander", "new-islander-component.fxml", this);
         sceneController.addScene("home", "home-view.fxml", this);
         sceneController.addScene("help", "help-view.fxml", this);
         sceneController.addScene("islander-setup", "islander-setup-view.fxml", this);
@@ -54,7 +53,7 @@ public class LoveIslandSimulatorApp extends Application {
         sceneController.addScene("assign-challenge", "assign-challenge.fxml", this);
         sceneController.addScene("challenge-results", "challenge-results.fxml", this);
         sceneController.addScene("game-result", "game-result.fxml", this);
-        sceneController.addScene("new-islander", "new-islander-component.fxml", this);
+        sceneController.addScene("new-islander", "components/new-islander-component.fxml", this);
         // sceneController.addScene("error", "error-view.fxml", this);
 
         sceneController.showInitialScene("home"); // Show initial scene
