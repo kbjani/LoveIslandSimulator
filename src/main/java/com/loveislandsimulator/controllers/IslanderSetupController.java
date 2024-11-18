@@ -1,6 +1,7 @@
 package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
+import com.loveislandsimulator.controllers.components.NewIslanderController;
 import com.loveislandsimulator.models.AppController;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,12 +27,17 @@ public class IslanderSetupController implements AppController {
         try {
             GridPane gridPane = new GridPane();
             gridPane.setHgap(20);
-            gridPane.setVgap(5);
+            gridPane.setVgap(20);
 
             // Add 10 components in pairs of 2
             for (int i = 0; i < 10; i++) {
                 FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/new-islander-component.fxml"));
                 GridPane islanderComponent = loader.load();
+
+                // Access the controller to set the avatar
+                NewIslanderController controller = loader.getController();
+                String avatarFileName = "avatar" + (i + 1) + ".png";
+                controller.setAvatar(avatarFileName);
 
                 int row = i / 2;  // Each row has 2 items
                 int col = i % 2;  // Alternates between 0 (left) and 1 (right)

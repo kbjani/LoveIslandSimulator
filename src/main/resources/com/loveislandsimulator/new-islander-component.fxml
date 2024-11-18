@@ -20,7 +20,7 @@
     <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
   </rowConstraints>
    <children>
-      <ImageView fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+      <ImageView fx:id="avatarImage" fitHeight="130.0" fitWidth="130.0" pickOnBounds="true" preserveRatio="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Islander Name" wrappingWidth="197.04351806640625">
@@ -28,7 +28,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
-            <ComboBox prefWidth="150.0" promptText="Select Strategy" />
+            <ComboBox fx:id="strategyComboBox" prefWidth="150.0" promptText="Select Strategy" />
          </children>
       </VBox>
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="2">
@@ -36,7 +36,8 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Roles:" wrappingWidth="197.04351806640625" />
             <CheckBox mnemonicParsing="false" text="Leader" />
             <CheckBox mnemonicParsing="false" text="Outsider" />
-            <CheckBox mnemonicParsing="false" text="Romantic" />
+            <CheckBox mnemonicParsing="false" text="Flirt" />
+            <CheckBox mnemonicParsing="false" text="Double Faced" />
          </children>
       </VBox>
    </children>
