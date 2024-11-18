@@ -70,8 +70,6 @@ public class IslanderSetupController implements AppController {
             strategies.add(strategy.toString());
         }
 
-
-        GridPane gridPane = (GridPane) islandersContainer.getChildren().get(0);
         controllers.forEach(controller -> {
             // Randomize name
             TextField nameField = controller.getNameField();
@@ -97,7 +95,30 @@ public class IslanderSetupController implements AppController {
     }
 
     public void onStartButtonClick() {
-        // TODO: Validate fields and catch errors
+        for (NewIslanderController controller : controllers) {
+            validateFields(controller);
+        }
+        // TODO: Create Islanders instances with data
         app.getSceneController().switchTo("islanders-view");
+    }
+
+    /**
+     * Validates the fields for the "New Islander" components.
+     * @param controller The controller.
+     */
+    private void validateFields(NewIslanderController controller){
+        TextField nameField = controller.getNameField();
+        ComboBox<String> strategyComboBox = controller.getStrategyComboBox();
+
+        if (nameField.getText() == null || nameField.getText().trim().isEmpty()) {
+            // TODO: Display empty name field error to user
+            return;
+        }
+
+        // Check if a strategy is selected
+        if (strategyComboBox.getValue() == null) {
+            // TODO: Display empty strategy error to user
+            return;
+        }
     }
 }
