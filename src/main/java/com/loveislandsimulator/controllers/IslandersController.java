@@ -38,6 +38,9 @@ public class IslandersController implements AppController {
         });
     }
 
+    /**
+     *  Populates the islanders in pairs in a grid layout.
+     */
     private void populateIslanders() {
         List<Islander> islanders = GameData.getInstance().getIslanders();
 
