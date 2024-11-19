@@ -1,9 +1,8 @@
 package com.loveislandsimulator.controllers.components;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
-import com.loveislandsimulator.enums.Strategies;
 import com.loveislandsimulator.models.AppController;
-import javafx.beans.property.SimpleObjectProperty;
+import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
@@ -15,7 +14,9 @@ import java.io.InputStream;
 
 public class NewIslanderController implements AppController {
     private LoveIslandSimulatorApp app;
+    private Image image;
 
+    //#region FXML Properties
     @FXML
     private ComboBox<String> strategyComboBox;
 
@@ -36,6 +37,7 @@ public class NewIslanderController implements AppController {
 
     @FXML
     private CheckBox doubleFacedCheckBox;
+    //#endregion
 
     public void setApp(LoveIslandSimulatorApp app) {
         this.app = app;
@@ -43,7 +45,10 @@ public class NewIslanderController implements AppController {
 
     @FXML
     public void initialize() {
-        initializeStrategies();
+        // Initialize strategies for combobox
+        for (IslanderBehaviorStrategy strategy : IslanderBehaviorStrategy.getAllStrategies()) {
+            strategyComboBox.getItems().add(strategy.getStrategyName());
+        }
     }
 
     /**
@@ -55,13 +60,18 @@ public class NewIslanderController implements AppController {
         InputStream inputStream = getClass().getResourceAsStream(filePath);
 
         if(inputStream != null){
-            Image avatar = new Image(inputStream);
-            avatarImage.setImage(avatar);
+            image = new Image(inputStream);
+            avatarImage.setImage(image);
         }
     }
 
+    //#region Getters & Setters
     public TextField getNameField() {
         return nameField;
+    }
+
+    public Image getAvatar() {
+        return image;
     }
 
     public ComboBox<String> getStrategyComboBox() {
@@ -83,13 +93,5 @@ public class NewIslanderController implements AppController {
     public CheckBox getDoubleFacedCheckBox() {
         return doubleFacedCheckBox;
     }
-
-    /**
-     * Initializes the strategy options for the islander.
-     */
-    private void initializeStrategies(){
-        for (Strategies strategy : Strategies.values()) {
-            strategyComboBox.getItems().add(strategy.toString());
-        }
-    }
+    //#endregion
 }

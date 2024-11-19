@@ -1,9 +1,11 @@
 package com.loveislandsimulator;
 
 import com.loveislandsimulator.challenges.PhysicalChallenge;
+import com.loveislandsimulator.challenges.SocialChallenge;
 import com.loveislandsimulator.challenges.TriviaChallenge;
 import com.loveislandsimulator.controllers.base.SceneController;
 import com.loveislandsimulator.models.ChallengeCommand;
+import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import com.loveislandsimulator.roles.FlirtRole;
 import com.loveislandsimulator.roles.OutsiderRole;
@@ -41,6 +43,14 @@ public class LoveIslandSimulatorApp extends Application {
 
         System.out.println("Current Scores: " + tracker.getScoreData());
 
+        // Initialize Data
+        GameData gameData = GameData.getInstance();
+
+        // Add predefined challenges
+        gameData.addChallenge(new PhysicalChallenge());
+        gameData.addChallenge(new SocialChallenge());
+        gameData.addChallenge(new TriviaChallenge());
+
         // UI Startup
         this.sceneController = new SceneController(primaryStage);
 
@@ -54,6 +64,8 @@ public class LoveIslandSimulatorApp extends Application {
         sceneController.addScene("challenge-results", "challenge-results.fxml", this);
         sceneController.addScene("game-result", "game-result.fxml", this);
         sceneController.addScene("new-islander", "components/new-islander-component.fxml", this);
+        sceneController.addScene("islander", "components/islander-component.fxml", this);
+
         // sceneController.addScene("error", "error-view.fxml", this);
 
         sceneController.showInitialScene("home"); // Show initial scene

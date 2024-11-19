@@ -2,11 +2,12 @@ package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.controllers.components.NewIslanderController;
-import com.loveislandsimulator.enums.Strategies;
 import com.loveislandsimulator.models.AppController;
+import com.loveislandsimulator.models.GameData;
+import com.loveislandsimulator.models.Islander;
+import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
@@ -14,17 +15,36 @@ import javafx.scene.layout.HBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
+/**
+ * Controller for the Islander Setup view. This view is used to set all initial values for the islanders.
+ * Associated FXML: islander-setup-view.fxml
+ */
 public class IslanderSetupController implements AppController {
     private LoveIslandSimulatorApp app;
+    private ArrayList<String> strategies = new ArrayList<String>();
+    private final Random random = new Random();
+
+    // TODO: Expand on name list for more options.
     private final String[] names = {"Alex", "Jordan", "Taylor", "Casey", "Riley", "Morgan", "Jamie", "Drew", "Sydney", "Peyton"};
     private FXMLLoader loader;
     private final ArrayList<NewIslanderController> controllers = new ArrayList<>(); // Store controllers
 
-
     @FXML
     private HBox islandersContainer;
+
+    /**
+     * Constructor for the Islander Setup Controller & Gets the IslanderBehaviorStrategies.
+     */
+    public IslanderSetupController() {
+        // Get friendly strategy names for GUI
+        List<IslanderBehaviorStrategy> strategies = IslanderBehaviorStrategy.getAllStrategies();
+        for(IslanderBehaviorStrategy strategy: strategies){
+            this.strategies.add(strategy.getStrategyName());
+        }
+    }
 
     @Override
     public void setApp(LoveIslandSimulatorApp app) {
@@ -62,63 +82,89 @@ public class IslanderSetupController implements AppController {
         }
     }
 
+    /**
+     *  Method to control the Randomize Button in the GUI.
+     *  This button will populate all available field(s) with random values, including
+     *  name, strategy, and role(s).
+     */
     public void onRandomizeButtonClick() {
-        Random random = new Random();
-
-       ArrayList<String> strategies = new ArrayList<>();
-        for (Strategies strategy : Strategies.values()) {
-            strategies.add(strategy.toString());
-        }
-
         controllers.forEach(controller -> {
-            // Randomize name
-            TextField nameField = controller.getNameField();
-            nameField.setText(names[random.nextInt(names.length)]);
-
-            // Randomize strategy ComboBox
-            ComboBox<String> strategyComboBox = controller.getStrategyComboBox();
-            strategyComboBox.getItems().clear();
-            strategyComboBox.getItems().addAll(strategies);
-            strategyComboBox.setValue(strategies.get(random.nextInt(strategies.size())));
-
-            // Randomize role CheckBoxes
-            CheckBox leaderCheckBox = controller.getLeaderCheckBox();
-            CheckBox outsiderCheckBox = controller.getOutsiderCheckBox();
-            CheckBox flirtCheckBox = controller.getFlirtCheckBox();
-            CheckBox doubleFacedCheckBox = controller.getDoubleFacedCheckBox();
-
-            leaderCheckBox.setSelected(random.nextBoolean());
-            outsiderCheckBox.setSelected(random.nextBoolean());
-            flirtCheckBox.setSelected(random.nextBoolean());
-            doubleFacedCheckBox.setSelected(random.nextBoolean());
+            randomizeName(controller);
+            randomizeStrategy(controller);
+            randomizeRoles(controller);
         });
     }
 
+    /**
+     * Method to control the Start Button in the GUI.
+     * When the start button is clicked, the fields are to be validated.
+     * If all entries are valid, then Islanders are created and saved in the GameData.
+     */
     public void onStartButtonClick() {
         for (NewIslanderController controller : controllers) {
-            validateFields(controller);
+            if (!validateFields(controller)) {
+                return; // validation fails
+            }
+
+            String name = controller.getNameField().getText();
+            String strategy = controller.getStrategyComboBox().getValue();
+
+            Islander islander = new Islander(name, controller.getAvatar());
+            islander.setBehaviorStrategy(IslanderBehaviorStrategy.fromString(strategy));
+            // TODO: Set roles
+
+            GameData.getInstance().addIslander(islander);
         }
-        // TODO: Create Islanders instances with data
+
         app.getSceneController().switchTo("islanders-view");
+    }
+
+    /**
+     * Sets a random name in the name field for the islander.
+     * @param controller The controller.
+     */
+    private void randomizeName(NewIslanderController controller){
+        TextField nameField = controller.getNameField();
+        nameField.setText(names[random.nextInt(names.length)]);
+    }
+
+    /**
+     * Sets a random strategy in the strategy combo box for the islander.
+     * @param controller The controller.
+     */
+    private void randomizeStrategy(NewIslanderController controller){
+        ComboBox<String> strategyComboBox = controller.getStrategyComboBox();
+        strategyComboBox.getItems().clear();
+        strategyComboBox.getItems().addAll(this.strategies);
+        strategyComboBox.setValue(this.strategies.get(random.nextInt(this.strategies.size())));
+    }
+
+    /**
+     * Randomizes the role selection and sets the associated checkboxes.
+     * @param controller The controller.
+     */
+    private void randomizeRoles(NewIslanderController controller){
+        controller.getLeaderCheckBox().setSelected(random.nextBoolean());
+        controller.getOutsiderCheckBox().setSelected(random.nextBoolean());
+        controller.getFlirtCheckBox().setSelected(random.nextBoolean());
+        controller.getDoubleFacedCheckBox().setSelected(random.nextBoolean());
     }
 
     /**
      * Validates the fields for the "New Islander" components.
      * @param controller The controller.
      */
-    private void validateFields(NewIslanderController controller){
+    private boolean validateFields(NewIslanderController controller) {
         TextField nameField = controller.getNameField();
         ComboBox<String> strategyComboBox = controller.getStrategyComboBox();
 
         if (nameField.getText() == null || nameField.getText().trim().isEmpty()) {
             // TODO: Display empty name field error to user
-            return;
+            return false;
         }
 
         // Check if a strategy is selected
-        if (strategyComboBox.getValue() == null) {
-            // TODO: Display empty strategy error to user
-            return;
-        }
+        // TODO: Display empty strategy error to user
+        return strategyComboBox.getValue() != null;
     }
 }
