@@ -110,9 +110,26 @@ public class IslanderSetupController implements AppController {
             String strategy = controller.getStrategyComboBox().getValue();
 
             Islander islander = new Islander(name, controller.getAvatar());
-            islander.setBehaviorStrategy(IslanderBehaviorStrategy.fromString(strategy));
-            // TODO: Set roles
 
+            /*
+            if(controller.getLeaderCheckBox().isSelected()){
+                islander = new LeaderRole(islander);
+            }
+
+            if(controller.getOutsiderCheckBox().isSelected()){
+                islander = new OutsiderRole(islander);
+            }
+
+            if(controller.getFlirtCheckBox().isSelected()){
+                islander = new FlirtRole(islander);
+            }
+
+            if(controller.getDoubleFacedCheckBox().isSelected()){
+                islander = new DoubleFacedRole(islander);
+            }
+             */
+
+            islander.setBehaviorStrategy(IslanderBehaviorStrategy.fromString(strategy));
             GameData.getInstance().addIslander(islander);
         }
 

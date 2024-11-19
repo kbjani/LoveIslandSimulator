@@ -46,11 +46,14 @@ public interface IslanderBehaviorStrategy {
      * @throws IllegalArgumentException If no matching strategy is found.
      */
     static IslanderBehaviorStrategy fromString(String name) {
-        return getAllStrategies().stream()
-                .filter(strategy -> strategy.getStrategyName().equalsIgnoreCase(name))
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("Unknown strategy: " + name));
+        return switch (name.toLowerCase()) {
+            case "aggressive" -> new AggressiveStrategy();
+            case "balanced" -> new BalancedStrategy();
+            case "passive" -> new PassiveStrategy();
+            default -> null;
+        };
     }
+
 }
 
 

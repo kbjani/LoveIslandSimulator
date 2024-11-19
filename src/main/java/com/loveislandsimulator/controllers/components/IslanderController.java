@@ -1,12 +1,15 @@
 package com.loveislandsimulator.controllers.components;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
+import com.loveislandsimulator.enums.Role;
 import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+
+import java.util.ArrayList;
 
 /**
  * Controller for the individual Islander component. This component is used after the islanders have been initialized.
@@ -51,7 +54,7 @@ public class IslanderController implements AppController {
      * @param strategy The islander behavior strategy.
      */
     public void setStrategyField(IslanderBehaviorStrategy strategy) {
-        strategyField.setText(strategy.getStrategyName() + " Strategy");
+        strategyField.setText(strategy.getStrategyName());
     }
 
     /**
@@ -60,5 +63,21 @@ public class IslanderController implements AppController {
      */
     public void setAvatar(Image avatar) {
         avatarImage.setImage(avatar);
+    }
+
+    /**
+     * Set the islander's roles in the UI.
+     * @param roles
+     */
+    public void setRoles(ArrayList<Role> roles){
+        if(roles == null || roles.isEmpty()){
+            return;
+        }
+
+        StringBuilder text = new StringBuilder();
+        for(Role role: roles){
+            text.append(Role.getRoleName(role)).append(" \n");
+        }
+        rolesField.setText(text.toString());
     }
 }

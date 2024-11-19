@@ -55,7 +55,7 @@
                <font>
                   <Font name="System Bold" size="13.0" />
                </font></Text>
-            <Text fx:id="rolesField" strokeType="OUTSIDE" strokeWidth="0.0" text="Leader" wrappingWidth="114.80520629882812" />
+            <Text fx:id="rolesField" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="114.80520629882812" />
          </children>
       </VBox>
    </children>

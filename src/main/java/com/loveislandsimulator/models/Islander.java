@@ -1,15 +1,18 @@
 package com.loveislandsimulator.models;
 
+import com.loveislandsimulator.enums.Role;
 import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import javafx.scene.image.Image;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Islander implements Serializable {
     private final String name;
     private int score;
     private IslanderBehaviorStrategy behaviorStrategy;
     private Image avatar;
+    private ArrayList<Role> roles;
 
     //#region Constructors
     public Islander(String name) {
@@ -21,6 +24,7 @@ public class Islander implements Serializable {
         this.name = name;
         this.avatar = avatar;
         this.score = 0;
+        roles = new ArrayList<Role>();
     }
     //#endregion
 
@@ -60,6 +64,13 @@ public class Islander implements Serializable {
     public void setBehaviorStrategy(IslanderBehaviorStrategy strategy) {
         this.behaviorStrategy = strategy;
     }
-    //#endregion
 
+    public void addRole(Role role){
+        this.roles.add(role);
+    }
+
+    public ArrayList<Role> getRoles(){
+        return this.roles;
+    }
+    //#endregion
 }
