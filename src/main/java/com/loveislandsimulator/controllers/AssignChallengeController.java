@@ -32,6 +32,9 @@ public class AssignChallengeController implements AppController {
 
     @FXML
     private Text selectedChallengeDescription;
+
+    @FXML
+    private Text titleText;
     //#endregion
 
     public void setApp(LoveIslandSimulatorApp app) {
@@ -45,6 +48,12 @@ public class AssignChallengeController implements AppController {
                 newScene.windowProperty().addListener((winObservable, oldWindow, newWindow) -> {
                     if (newWindow != null) {
                         populateIslanders(); // run method when scene is set (on load)
+
+                        // Initialize page title with game number
+                        int currentGame = GameData.getInstance().getChallengeCount() + 1;
+                        titleText.setText("Love Island Challenge #" + currentGame);
+
+                        displaySelectedChallenge();
                     }
                 });
             }
@@ -54,8 +63,6 @@ public class AssignChallengeController implements AppController {
         for (ChallengeCommand command : GameData.getInstance().getChallenges()) {
             challengeComboBox.getItems().add(command.getName());
         }
-
-        displaySelectedChallenge();
     }
 
 
@@ -84,6 +91,8 @@ public class AssignChallengeController implements AppController {
      * Populates the islanders in the scoreboard.
      */
     private void populateIslanders() {
+        islandersContainer.getChildren().clear(); // avoid duplicating islanders on consecutive loads
+
         List<Islander> islanders = GameData.getInstance().getIslanders();
 
         //TODO: Order islanders by score (high -> low) for scoreboard.

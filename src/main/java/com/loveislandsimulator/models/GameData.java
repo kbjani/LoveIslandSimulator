@@ -13,9 +13,11 @@ public class GameData {
     private static GameData instance; // Singleton instance
     private final ObservableList<Islander> islanders = FXCollections.observableArrayList();
     private final List<ChallengeCommand> challenges;
+    private int completedChallengeCount;
 
     private GameData() {
         challenges = new ArrayList<>();
+        completedChallengeCount = 0;
     }
 
     public static synchronized GameData getInstance(){
@@ -65,9 +67,18 @@ public class GameData {
     }
 
     /**
-     * Clears the list of challenges.
+     * Gets the number of completed challenges in the game.
+     * @return The number of completed challenges.
      */
-    public void clearChallenges() {
-        challenges.clear();
+    public int getChallengeCount(){
+        return completedChallengeCount;
+    }
+
+    /**
+     * Increments the number of completed challenges by 1.
+     */
+    public void incrementCompleted(){
+        System.out.println(completedChallengeCount);
+        completedChallengeCount++;
     }
 }
