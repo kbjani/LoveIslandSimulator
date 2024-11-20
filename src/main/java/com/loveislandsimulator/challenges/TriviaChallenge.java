@@ -10,4 +10,14 @@ public class TriviaChallenge implements ChallengeCommand {
         islander.addScore(score);
         System.out.println(islander.getName() + " completed Trivia Challenge and scored " + score + " points!");
     }
+
+    @Override
+    public String getDescription(){
+        return "Islanders are quizzed on a variety of topics to demonstrate their knowledge and quick thinking, competing for points.";
+    }
+
+    @Override
+    public String getName(){
+        return "Trivia Challenge";
+    }
 }

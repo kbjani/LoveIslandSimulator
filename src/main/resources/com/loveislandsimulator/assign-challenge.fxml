@@ -11,61 +11,58 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<VBox alignment="CENTER" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loveislandsimulator.controllers.AssignChallengeController">
-   <children>
-      <GridPane VBox.vgrow="ALWAYS">
-        <columnConstraints>
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="504.9867248535156" minWidth="10.0" prefWidth="458.83489990234375" />
-          <ColumnConstraints hgrow="SOMETIMES" maxWidth="688.734130859375" minWidth="10.0" prefWidth="565.1651000976562" />
-        </columnConstraints>
-        <rowConstraints>
-          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-        </rowConstraints>
-         <children>
-            <VBox alignment="TOP_CENTER" prefHeight="766.0" prefWidth="366.0">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Scoreboard" textAlignment="CENTER" wrappingWidth="159.3116455078125">
-                     <font>
-                        <Font name="System Bold" size="24.0" />
-                     </font>
-                  </Text>
-                  <VBox fx:id="islandersContainer" alignment="TOP_CENTER" prefHeight="730.0" prefWidth="459.0">
-                     <VBox.margin>
-                        <Insets top="20.0" />
-                     </VBox.margin></VBox>
-               </children>
-            </VBox>
-            <VBox alignment="CENTER" prefHeight="768.0" prefWidth="227.0" GridPane.columnIndex="1">
-               <children>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Love Island Challenge #1">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Text>
-                  <HBox alignment="CENTER" prefHeight="68.0" prefWidth="685.0" spacing="20.0">
-                     <children>
-                        <ComboBox prefWidth="150.0" promptText="Select a Challenge" />
-                        <Button mnemonicParsing="false" onAction="#onRandomButtonClick" text="Random" />
-                     </children>
-                  </HBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                     <children>
-                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Selected Challenge: {Name}" wrappingWidth="217.8189697265625">
-                           <font>
-                              <Font size="18.0" />
-                           </font>
-                        </Text>
-                        <Text fill="#575757" strokeType="OUTSIDE" strokeWidth="0.0" text="Description of the selected challenge." wrappingWidth="218.681640625">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </VBox>
-                  <Button mnemonicParsing="false" onAction="#onSimulateButtonClick" prefHeight="33.0" prefWidth="131.0" text="Simulate Challenge" />
-               </children>
-            </VBox>
-         </children>
-      </GridPane>
-   </children>
+<VBox alignment="CENTER" prefHeight="768.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/23.0.1"
+      xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.loveislandsimulator.controllers.AssignChallengeController">
+   <GridPane VBox.vgrow="ALWAYS">
+      <columnConstraints>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="504.9867248535156" minWidth="10.0"
+                            prefWidth="458.83489990234375"/>
+         <ColumnConstraints hgrow="SOMETIMES" maxWidth="688.734130859375" minWidth="10.0"
+                            prefWidth="565.1651000976562"/>
+      </columnConstraints>
+      <rowConstraints>
+         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+      </rowConstraints>
+      <VBox alignment="TOP_CENTER" prefHeight="766.0" prefWidth="366.0">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Scoreboard" textAlignment="CENTER"
+               wrappingWidth="159.3116455078125">
+            <font>
+               <Font name="System Bold" size="24.0"/>
+            </font>
+         </Text>
+         <VBox fx:id="islandersContainer" alignment="TOP_CENTER" prefHeight="730.0" prefWidth="459.0">
+            <VBox.margin>
+               <Insets top="20.0"/>
+            </VBox.margin>
+         </VBox>
+      </VBox>
+      <VBox alignment="CENTER" prefHeight="768.0" prefWidth="227.0" GridPane.columnIndex="1">
+         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Love Island Challenge #1">
+            <font>
+               <Font size="18.0"/>
+            </font>
+         </Text>
+         <HBox alignment="CENTER" prefHeight="68.0" prefWidth="685.0" spacing="20.0">
+            <ComboBox fx:id="challengeComboBox" prefWidth="150.0" promptText="Select a Challenge"/>
+            <Button mnemonicParsing="false" onAction="#onRandomButtonClick" text="Random"/>
+         </HBox>
+         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
+            <Text fx:id="selectedChallengeName" strokeType="OUTSIDE" strokeWidth="0.0"
+                  text="Selected Challenge: {Name}" wrappingWidth="217.8189697265625">
+               <font>
+                  <Font size="18.0"/>
+               </font>
+            </Text>
+            <Text fx:id="selectedChallengeDescription" fill="#575757" strokeType="OUTSIDE" strokeWidth="0.0"
+                  text="Description of the selected challenge." textAlignment="CENTER"
+                  wrappingWidth="396.681640625">
+               <font>
+                  <Font size="14.0"/>
+               </font>
+            </Text>
+         </VBox>
+         <Button mnemonicParsing="false" onAction="#onSimulateButtonClick" prefHeight="33.0" prefWidth="131.0"
+                 text="Simulate Challenge"/>
+      </VBox>
+   </GridPane>
 </VBox>

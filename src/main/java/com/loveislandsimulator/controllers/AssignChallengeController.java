@@ -2,20 +2,20 @@ package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.controllers.components.IslanderController;
-import com.loveislandsimulator.controllers.components.NewIslanderController;
 import com.loveislandsimulator.models.AppController;
+import com.loveislandsimulator.models.ChallengeCommand;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Random;
 
 public class AssignChallengeController implements AppController {
     private LoveIslandSimulatorApp app;
@@ -23,6 +23,15 @@ public class AssignChallengeController implements AppController {
     //#region FXML Properties
     @FXML
     private VBox islandersContainer;
+
+    @FXML
+    private ComboBox<String> challengeComboBox;
+
+    @FXML
+    private Text selectedChallengeName;
+
+    @FXML
+    private Text selectedChallengeDescription;
     //#endregion
 
     public void setApp(LoveIslandSimulatorApp app) {
@@ -40,10 +49,20 @@ public class AssignChallengeController implements AppController {
                 });
             }
         });
+
+        // Initialize strategies for combobox
+        for (ChallengeCommand command : GameData.getInstance().getChallenges()) {
+            challengeComboBox.getItems().add(command.getName());
+        }
+
+        displaySelectedChallenge();
     }
 
+
     public void onRandomButtonClick() {
-        // TODO: Select a random challenge on the dropdown
+        Random random = new Random();
+        List<ChallengeCommand> challenges = GameData.getInstance().getChallenges();
+        challengeComboBox.setValue(challenges.get(random.nextInt(challenges.size())).getName());
     }
 
     public void onSimulateButtonClick() {
@@ -54,11 +73,11 @@ public class AssignChallengeController implements AppController {
 
     /**
      * Validates the fields.
-     * @param controller The controller.
+     *
      */
-    private boolean validateFields(AssignChallengeController controller) {
+    private boolean validateFields() {
         //TODO: Validate that a challenge is selected.
-       return true;
+        return true;
     }
 
     /**
@@ -71,8 +90,7 @@ public class AssignChallengeController implements AppController {
 
         if (!islanders.isEmpty()) {
             try {
-                for (int i = 0; i < islanders.size(); i++) {
-                    Islander islander = islanders.get(i);
+                for (Islander islander : islanders) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/components/small-islander-component.fxml"));
                     GridPane islanderComponent = loader.load();
 
@@ -92,4 +110,21 @@ public class AssignChallengeController implements AppController {
         }
     }
 
+    private void displaySelectedChallenge() {
+        // Update challenge details when a new challenge is selected from the ComboBox
+        challengeComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
+            if (newVal != null) {
+                // Find the selected challenge
+                ChallengeCommand selectedChallenge = GameData.getInstance().getChallenges().stream()
+                        .filter(c -> c.getName().equals(newVal))
+                        .findFirst()
+                        .orElse(null);
+
+                if (selectedChallenge != null) {
+                    selectedChallengeName.setText(selectedChallenge.getName());
+                    selectedChallengeDescription.setText(selectedChallenge.getDescription());
+                }
+            }
+        });
+    }
 }
