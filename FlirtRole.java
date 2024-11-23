@@ -1,24 +1,14 @@
-// Love Island Simulation
-// Main method to test program is in TestSimulation.java
-
-
 public class FlirtRole extends RoleDecorator {
-
-    // CONSTRUCTOR
-
+    
     public FlirtRole(Contestant islander) {
         super(islander);
     }
 
-    // METHODS
-    
     @Override
-    public double getScore() {
-        return super.getScore() + 7;
+    public void addPoints(double points) {
+        double wrappedPoints = points + 8;
+        super.addPoints(wrappedPoints);
+        System.out.println(this.wrappedIslander.getName() + " applied Flirt role for 8 extra points...");
     }
 
-    @Override
-    public String getDescription() {
-        return super.getDescription() + ", Flirt Role";
-    }
 }

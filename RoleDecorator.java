@@ -1,43 +1,43 @@
-// Love Island Simulation
-// Main method to test program is in TestSimulation.java
-
-
 public abstract class RoleDecorator implements Contestant {
     
-    // FIELDS
+    protected Contestant wrappedIslander;
 
-    protected Contestant islander;
-
-    // CONSTRUCTORS
     public RoleDecorator(Contestant islander) {
-        this.islander = islander;
+        this.wrappedIslander = islander;
     }
-
-    // METHODS
 
     @Override
     public String getName() {
-        return islander.getName();
+        return wrappedIslander.getName();
     }
 
     @Override
     public double getScore() {
-        return islander.getScore();
+        return wrappedIslander.getScore();
     }
 
     @Override
-    public String getDescription() {
-        return islander.getDescription();
+    public void addPoints(double points) {
+        wrappedIslander.addPoints(points);
     }
 
     @Override
-    public void updatedScore(double updatedScore) {
-        islander.updatedScore(updatedScore);
+    public BehaviorStrategy getStrategy() {
+        return wrappedIslander.getStrategy();
     }
 
     @Override
     public void setStrategy(BehaviorStrategy strategy) {
-        islander.setStrategy(strategy);
+        wrappedIslander.setStrategy(strategy);
     }
 
+    @Override
+    public double applyStrategy(double points) {
+        return wrappedIslander.applyStrategy(points);
+    }
+    
+    @Override
+    public void scoreStatus() {
+        wrappedIslander.scoreStatus();
+    }
 }

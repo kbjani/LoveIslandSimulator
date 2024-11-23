@@ -1,8 +1,8 @@
-public class AggressiveStrategy implements BehaviorStrategy {
+public class PassiveStrategy implements BehaviorStrategy {
     
     @Override
     public String getStrategyName() {
-        return "Aggressive";
+        return "Passive";
     }
 
     @Override
@@ -11,7 +11,7 @@ public class AggressiveStrategy implements BehaviorStrategy {
         if (luck < 0.5) {
             points = points * 0.95;
         } else {
-            points = points * 0.87;
+            points = points * 0.85;
         }
         return points;
     }

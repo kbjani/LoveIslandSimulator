@@ -1,54 +1,52 @@
-// Love Island Simulation
-// Main method to test program is in TestSimulation.java
 
 
 public class Islander implements Contestant {
-
-    // FIELDS
-
+    
     private String name;
     private double score;
     private BehaviorStrategy strategy;
-
-    // CONSTRUCTORS
-
+    
     public Islander(String name, BehaviorStrategy strategy) {
         this.name = name;
-        this.score = 0;
+        this.score = 0.0;
         this.strategy = strategy;
     }
 
-    // METHODS
 
     @Override
     public String getName() {
         return name;
     }
-
     @Override
     public double getScore() {
-        return score * strategy.getStrategyScoreFactor();
+        return score;
     }
-
     @Override
-    public String getDescription() {
-        return name + " with " + strategy.getStrategyDescription();
+    public void addPoints(double points) {
+        this.score += points;
     }
-
     @Override
-    public void updatedScore(double updatedScore) {
-        this.score = updatedScore;
-        
+    public BehaviorStrategy getStrategy() {
+        return strategy;
     }
-    
     @Override
     public void setStrategy(BehaviorStrategy strategy) {
         this.strategy = strategy;
     }
 
-    public BehaviorStrategy getStrategy() {
-        return strategy;
+    @Override
+    public double applyStrategy(double points) {
+        double earnedPoints = this.strategy.applyStrategy(points);
+        System.out.println(this.name + " applied " + this.strategy.getStrategyName() + " strategy and earned " + earnedPoints + " points...");
+        return earnedPoints;
+    } 
+
+    @Override
+    public void scoreStatus() {
+        System.out.println("Islander " + this.name + " -- Current Score: " + getScore());
     }
 
+    
 
+    
 }

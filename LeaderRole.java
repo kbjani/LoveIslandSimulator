@@ -1,24 +1,14 @@
-// Love Island Simulation
-// Main method to test program is in TestSimulation.java
-
-
 public class LeaderRole extends RoleDecorator {
-
-    // CONSTRUCTOR
-
+    
     public LeaderRole(Contestant islander) {
         super(islander);
     }
 
-    // METHODS
-    
     @Override
-    public double getScore() {
-        return super.getScore() + 15;
+    public void addPoints(double points) {
+        double wrappedPoints = points + 10;
+        super.addPoints(wrappedPoints);
+        System.out.println(this.wrappedIslander.getName() + " applied Leader role for 10 extra points...");
     }
 
-    @Override
-    public String getDescription() {
-        return super.getDescription() + ", Leader Role";
-    }
 }
