@@ -1,4 +1,4 @@
-package com.loveislandsimulator.controllers;
+package com.loveislandsimulator.controllers.base;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.models.AppController;
@@ -18,6 +18,14 @@ public class SceneController {
         this.stage = stage;
     }
 
+    /**
+     * Adds a new scene to the application.
+     *
+     * @param name The unique name to identify the scene.
+     * @param fxmlPath The path to the FXML file that defines the scene view.
+     * @param app The main application instance.
+     * @throws IOException Throws error if the FXML file cannot be loaded.
+     */
     public void addScene(String name, String fxmlPath, LoveIslandSimulatorApp app) throws IOException {
         FXMLLoader loader = new FXMLLoader(app.getClass().getResource(fxmlPath));
         Scene scene = new Scene(loader.load(), 1024, 768);
@@ -31,10 +39,20 @@ public class SceneController {
         scenes.put(name, scene);
     }
 
+    /**
+     * Switches to a previously added scene by its name.
+     *
+     * @param name The unique name of the scene to display.
+     */
     public void switchTo(String name) {
         stage.setScene(scenes.get(name));
     }
 
+    /**
+     * Shows the initial scene of the application.
+     *
+     * @param name The name of the scene to display.
+     */
     public void showInitialScene(String name) {
         stage.setScene(scenes.get(name));
         stage.setWidth(1024);

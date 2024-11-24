@@ -9,4 +9,12 @@ public class GameResultController implements AppController {
     public void setApp(LoveIslandSimulatorApp app) {
         this.app = app;
     }
+
+    public void onNewGameButtonClick(){
+        app.getSceneController().switchTo("islander-setup");
+    }
+
+    public void onQuitButtonClick(){
+        app.getSceneController().switchTo("home");
+    }
 }

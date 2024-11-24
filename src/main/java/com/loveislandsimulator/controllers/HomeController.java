@@ -4,7 +4,6 @@ import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.models.AppController;
 
 public class HomeController implements AppController {
-
     private LoveIslandSimulatorApp app;
 
     @Override
@@ -13,7 +12,7 @@ public class HomeController implements AppController {
     }
 
     public void onStartButtonClick() {
-        app.getSceneController().switchTo("game");
+        app.getSceneController().switchTo("islander-setup");
     }
 
     public void onHelpButtonClick() {

@@ -10,4 +10,14 @@ public class SocialChallenge implements ChallengeCommand {
         islander.addScore(score);
         System.out.println(islander.getName() + " completed Social Challenge and scored " + score + " points!");
     }
+
+    @Override
+    public String getDescription(){
+        return "Islanders engage in activities that test their social skills, including persuasion, alliance building, and emotional intelligence, to score points.";
+    }
+
+    @Override
+    public String getName(){
+        return "Social Challenge";
+    }
 }

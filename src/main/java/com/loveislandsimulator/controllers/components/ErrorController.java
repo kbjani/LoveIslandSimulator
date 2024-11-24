@@ -1,4 +1,4 @@
-package com.loveislandsimulator.controllers;
+package com.loveislandsimulator.controllers.components;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.models.AppController;

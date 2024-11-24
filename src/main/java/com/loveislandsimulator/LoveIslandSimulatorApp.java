@@ -1,10 +1,14 @@
 package com.loveislandsimulator;
 
 import com.loveislandsimulator.challenges.PhysicalChallenge;
+import com.loveislandsimulator.challenges.SocialChallenge;
 import com.loveislandsimulator.challenges.TriviaChallenge;
-import com.loveislandsimulator.controllers.SceneController;
+import com.loveislandsimulator.controllers.base.SceneController;
 import com.loveislandsimulator.models.ChallengeCommand;
+import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
+import com.loveislandsimulator.roles.FlirtRole;
+import com.loveislandsimulator.roles.OutsiderRole;
 import com.loveislandsimulator.services.ScoreTrackerSingleton;
 import com.loveislandsimulator.strategies.AggressiveStrategy;
 import com.loveislandsimulator.strategies.PassiveStrategy;
@@ -21,6 +25,9 @@ public class LoveIslandSimulatorApp extends Application {
         Islander john = new Islander("John");
         Islander emma = new Islander("Emma");
 
+        john = new FlirtRole(john);
+        emma = new OutsiderRole(emma);
+
         john.setBehaviorStrategy(new AggressiveStrategy());
         emma.setBehaviorStrategy(new PassiveStrategy());
 
@@ -36,26 +43,32 @@ public class LoveIslandSimulatorApp extends Application {
 
         System.out.println("Current Scores: " + tracker.getScoreData());
 
+        // Initialize Data
+        GameData gameData = GameData.getInstance();
+
+        // Add predefined challenges
+        gameData.addChallenge(new PhysicalChallenge());
+        gameData.addChallenge(new SocialChallenge());
+        gameData.addChallenge(new TriviaChallenge());
+
         // UI Startup
         this.sceneController = new SceneController(primaryStage);
 
         // Initialize scenes
+        //components
         sceneController.addScene("home", "home-view.fxml", this);
         sceneController.addScene("help", "help-view.fxml", this);
-
-        /* TODO: Implement additional views
-        sceneController.addScene("assign-challenge", "assign-challenge-view.fxml", this);
-        sceneController.addScene("challenge-results", "challenge-results-view.fxml", this);
-        sceneController.addScene("error", "error-view.fxml", this);
-        sceneController.addScene("game-result", "game-result-view.fxml", this);
-        sceneController.addScene("islander-info", "islander-info-view.fxml", this);
-        sceneController.addScene("islander-info", "islander-info-view.fxml", this);
         sceneController.addScene("islander-setup", "islander-setup-view.fxml", this);
-        sceneController.addScene("islander-view", "islander-view.fxml", this);
-         */
+        sceneController.addScene("islanders-view", "islanders-view.fxml", this);
+        sceneController.addScene("assign-challenge", "assign-challenge.fxml", this);
+        sceneController.addScene("challenge-results", "challenge-results.fxml", this);
+        sceneController.addScene("game-result", "game-result.fxml", this);
+        sceneController.addScene("new-islander", "components/new-islander-component.fxml", this);
+        sceneController.addScene("islander", "components/islander-component.fxml", this);
 
-        // Show initial scene
-        sceneController.showInitialScene("home");
+        // sceneController.addScene("error", "error-view.fxml", this);
+
+        sceneController.showInitialScene("home"); // Show initial scene
     }
 
     public SceneController getSceneController() {
