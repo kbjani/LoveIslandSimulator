@@ -38,10 +38,12 @@ public class Islander implements Serializable {
 
     /**
      * Performs the challenge based on the islander's behavior strategy.
+     * Increments the count of completed challenges.
      * @param challenge The ChallengeCommand.
      */
     public void participateInChallenge(ChallengeCommand challenge) {
         behaviorStrategy.perform(this, challenge);
+        GameData.getInstance().incrementCompleted();
     }
 
     //#region Getters & Setters

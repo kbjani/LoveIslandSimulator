@@ -73,8 +73,14 @@ public class AssignChallengeController implements AppController {
     }
 
     public void onSimulateButtonClick() {
+        List<Islander> islanders = GameData.getInstance().getIslanders();
         // TODO: Validate fields and catch errors
-        // TODO: Simulate the challenge for each islander and calculate scores.
+
+        ChallengeCommand challenge = findChallenge(challengeComboBox.getValue());
+        System.out.println(challenge);
+        for (Islander islander : islanders) {
+            islander.participateInChallenge(challenge);
+        }
         app.getSceneController().switchTo("challenge-results");
     }
 
@@ -109,6 +115,7 @@ public class AssignChallengeController implements AppController {
                     controller.setName(islander.getName());
                     controller.setStrategyField(islander.getBehaviorStrategy());
                     controller.setRoles(islander.getRoles());
+                    controller.setScore(islander.getScore());
 
                     islandersContainer.getChildren().add(islanderComponent);
                 }
@@ -119,15 +126,15 @@ public class AssignChallengeController implements AppController {
         }
     }
 
+    /**
+     * Displays the selected challenge on the UI.
+     * Changes the value of the challenge details whenever the selected ComboBox value changes.
+     */
     private void displaySelectedChallenge() {
         // Update challenge details when a new challenge is selected from the ComboBox
         challengeComboBox.valueProperty().addListener((obs, oldVal, newVal) -> {
             if (newVal != null) {
-                // Find the selected challenge
-                ChallengeCommand selectedChallenge = GameData.getInstance().getChallenges().stream()
-                        .filter(c -> c.getName().equals(newVal))
-                        .findFirst()
-                        .orElse(null);
+                ChallengeCommand selectedChallenge = findChallenge(newVal);
 
                 if (selectedChallenge != null) {
                     selectedChallengeName.setText(selectedChallenge.getName());
@@ -135,5 +142,18 @@ public class AssignChallengeController implements AppController {
                 }
             }
         });
+    }
+
+    /**
+     * Find the challenge that matches the provided string value.
+     *
+     * @param value The string value.
+     * @return The Challenge Command.
+     */
+    private ChallengeCommand findChallenge(String value) {
+        return GameData.getInstance().getChallenges().stream()
+                .filter(c -> c.getName().equals(value))
+                .findFirst()
+                .orElse(null);
     }
 }

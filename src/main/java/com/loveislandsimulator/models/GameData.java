@@ -20,6 +20,12 @@ public class GameData {
         completedChallengeCount = 0;
     }
 
+    /**
+     * Gets the Singleton instance of the GameData.
+     * If there is not an instance of the class already created, then create one.
+     *
+     * @return The instance of GameData.
+     */
     public static synchronized GameData getInstance(){
         if (instance == null){
             instance = new GameData();
@@ -78,7 +84,6 @@ public class GameData {
      * Increments the number of completed challenges by 1.
      */
     public void incrementCompleted(){
-        System.out.println(completedChallengeCount);
         completedChallengeCount++;
     }
 }

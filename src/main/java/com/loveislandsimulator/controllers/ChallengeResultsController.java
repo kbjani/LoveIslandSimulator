@@ -75,6 +75,7 @@ public class ChallengeResultsController implements AppController {
                     controller.setName(islander.getName());
                     controller.setStrategyField(islander.getBehaviorStrategy());
                     controller.setRoles(islander.getRoles());
+                    controller.setScore(islander.getScore());
 
                     islandersContainer.getChildren().add(islanderComponent);
                 }

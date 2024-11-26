@@ -41,6 +41,10 @@ public class IslanderController implements AppController {
         this.app = app;
     }
 
+    public void setScore(int score) {
+        scoreField.setText(Integer.toString(score));
+    }
+
     /**
      * Sets the name on the UI.
      * @param name The name.
