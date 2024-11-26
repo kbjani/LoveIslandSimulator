@@ -5,6 +5,7 @@ import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import javafx.scene.image.Image;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ArrayList;
 
 public class Islander implements Serializable {
@@ -12,27 +13,26 @@ public class Islander implements Serializable {
     private int score;
     private IslanderBehaviorStrategy behaviorStrategy;
     private Image avatar;
-    private ArrayList<Role> roles;
 
-    //#region Constructors
     public Islander(String name) {
         this.name = name;
         this.score = 0;
     }
 
-    public Islander(String name, Image avatar) {
-        this.name = name;
-        this.avatar = avatar;
-        this.score = 0;
-        roles = new ArrayList<Role>();
+    /**
+     * Default getRoles method to return an empty list for an islander that is not decorated.
+     *
+     * @return An empty list.
+     */
+    public List<Role> getRoles() {
+        return new ArrayList<>();
     }
-    //#endregion
 
     /**
      * Adds points to the islander's score.
      * @param points The points to add.
      */
-    public void addScore(int points) {
+    public void addPoints(int points) {
         this.score += points;
     }
 
@@ -57,20 +57,16 @@ public class Islander implements Serializable {
         return avatar;
     }
 
+    public void setAvatar(Image avatar) {
+        this.avatar = avatar;
+    }
+
     public IslanderBehaviorStrategy getBehaviorStrategy() {
         return behaviorStrategy;
     }
 
     public void setBehaviorStrategy(IslanderBehaviorStrategy strategy) {
         this.behaviorStrategy = strategy;
-    }
-
-    public void addRole(Role role){
-        this.roles.add(role);
-    }
-
-    public ArrayList<Role> getRoles(){
-        return this.roles;
     }
     //#endregion
 }

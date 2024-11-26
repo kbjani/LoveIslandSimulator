@@ -13,7 +13,6 @@ import javafx.scene.image.ImageView;
 import java.io.InputStream;
 
 public class NewIslanderController implements AppController {
-    private LoveIslandSimulatorApp app;
     private Image image;
 
     //#region FXML Properties
@@ -40,7 +39,6 @@ public class NewIslanderController implements AppController {
     //#endregion
 
     public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
     }
 
     @FXML
@@ -60,8 +58,8 @@ public class NewIslanderController implements AppController {
         InputStream inputStream = getClass().getResourceAsStream(filePath);
 
         if(inputStream != null){
-            image = new Image(inputStream);
-            avatarImage.setImage(image);
+            this.image = new Image(inputStream);
+            avatarImage.setImage(this.image);
         }
     }
 
@@ -71,7 +69,8 @@ public class NewIslanderController implements AppController {
     }
 
     public Image getAvatar() {
-        return image;
+        System.out.println(this.image);
+        return this.image;
     }
 
     public ComboBox<String> getStrategyComboBox() {

@@ -9,7 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Controller for the individual Islander component. This component is used after the islanders have been initialized.
@@ -67,9 +67,9 @@ public class IslanderController implements AppController {
 
     /**
      * Set the islander's roles in the UI.
-     * @param roles
+     * @param roles The list of roles to set.
      */
-    public void setRoles(ArrayList<Role> roles){
+    public void setRoles(List<Role> roles) {
         if(roles == null || roles.isEmpty()){
             return;
         }

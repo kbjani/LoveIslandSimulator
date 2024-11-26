@@ -4,14 +4,7 @@ import com.loveislandsimulator.challenges.PhysicalChallenge;
 import com.loveislandsimulator.challenges.SocialChallenge;
 import com.loveislandsimulator.challenges.TriviaChallenge;
 import com.loveislandsimulator.controllers.base.SceneController;
-import com.loveislandsimulator.models.ChallengeCommand;
 import com.loveislandsimulator.models.GameData;
-import com.loveislandsimulator.models.Islander;
-import com.loveislandsimulator.roles.FlirtRole;
-import com.loveislandsimulator.roles.OutsiderRole;
-import com.loveislandsimulator.services.ScoreTrackerSingleton;
-import com.loveislandsimulator.strategies.AggressiveStrategy;
-import com.loveislandsimulator.strategies.PassiveStrategy;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -22,27 +15,6 @@ public class LoveIslandSimulatorApp extends Application {
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        Islander john = new Islander("John");
-        Islander emma = new Islander("Emma");
-
-        john = new FlirtRole(john);
-        emma = new OutsiderRole(emma);
-
-        john.setBehaviorStrategy(new AggressiveStrategy());
-        emma.setBehaviorStrategy(new PassiveStrategy());
-
-        ChallengeCommand trivia = new TriviaChallenge();
-        ChallengeCommand physical = new PhysicalChallenge();
-
-        john.participateInChallenge(trivia);
-        emma.participateInChallenge(physical);
-
-        ScoreTrackerSingleton tracker = ScoreTrackerSingleton.getInstance();
-        tracker.updateScore(john);
-        tracker.updateScore(emma);
-
-        System.out.println("Current Scores: " + tracker.getScoreData());
-
         // Initialize Data
         GameData gameData = GameData.getInstance();
 
@@ -55,7 +27,6 @@ public class LoveIslandSimulatorApp extends Application {
         this.sceneController = new SceneController(primaryStage);
 
         // Initialize scenes
-        //components
         sceneController.addScene("home", "home-view.fxml", this);
         sceneController.addScene("help", "help-view.fxml", this);
         sceneController.addScene("islander-setup", "islander-setup-view.fxml", this);
@@ -65,8 +36,6 @@ public class LoveIslandSimulatorApp extends Application {
         sceneController.addScene("game-result", "game-result.fxml", this);
         sceneController.addScene("new-islander", "components/new-islander-component.fxml", this);
         sceneController.addScene("islander", "components/islander-component.fxml", this);
-
-        // sceneController.addScene("error", "error-view.fxml", this);
 
         sceneController.showInitialScene("home"); // Show initial scene
     }

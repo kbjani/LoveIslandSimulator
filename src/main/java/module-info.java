@@ -10,6 +10,7 @@ module com.example.loveislandsimulator {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
     requires com.almasb.fxgl.all;
+    requires annotations;
 
     opens com.loveislandsimulator to javafx.fxml;
     exports com.loveislandsimulator;

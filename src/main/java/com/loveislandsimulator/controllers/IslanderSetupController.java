@@ -5,6 +5,10 @@ import com.loveislandsimulator.controllers.components.NewIslanderController;
 import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
+import com.loveislandsimulator.roles.DoubleFacedRole;
+import com.loveislandsimulator.roles.FlirtRole;
+import com.loveislandsimulator.roles.LeaderRole;
+import com.loveislandsimulator.roles.OutsiderRole;
 import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,12 +28,11 @@ import java.util.Random;
  */
 public class IslanderSetupController implements AppController {
     private LoveIslandSimulatorApp app;
-    private ArrayList<String> strategies = new ArrayList<String>();
+    private final ArrayList<String> strategies = new ArrayList<>();
     private final Random random = new Random();
 
     // TODO: Expand on name list for more options.
     private final String[] names = {"Alex", "Jordan", "Taylor", "Casey", "Riley", "Morgan", "Jamie", "Drew", "Sydney", "Peyton"};
-    private FXMLLoader loader;
     private final ArrayList<NewIslanderController> controllers = new ArrayList<>(); // Store controllers
 
     @FXML
@@ -60,7 +63,7 @@ public class IslanderSetupController implements AppController {
 
             // Add 10 components in pairs of 2
             for (int i = 0; i < 10; i++) {
-                loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/components/new-islander-component.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/components/new-islander-component.fxml"));
                 GridPane islanderComponent = loader.load();
 
                 // Access the controller to set the avatar
@@ -108,32 +111,43 @@ public class IslanderSetupController implements AppController {
 
             String name = controller.getNameField().getText();
             String strategy = controller.getStrategyComboBox().getValue();
+            Islander islander = getIslander(controller, name);
 
-            Islander islander = new Islander(name, controller.getAvatar());
-
-            /*
-            if(controller.getLeaderCheckBox().isSelected()){
-                islander = new LeaderRole(islander);
-            }
-
-            if(controller.getOutsiderCheckBox().isSelected()){
-                islander = new OutsiderRole(islander);
-            }
-
-            if(controller.getFlirtCheckBox().isSelected()){
-                islander = new FlirtRole(islander);
-            }
-
-            if(controller.getDoubleFacedCheckBox().isSelected()){
-                islander = new DoubleFacedRole(islander);
-            }
-             */
-
+            islander.setAvatar(controller.getAvatar());
             islander.setBehaviorStrategy(IslanderBehaviorStrategy.fromString(strategy));
             GameData.getInstance().addIslander(islander);
         }
 
         app.getSceneController().switchTo("islanders-view");
+    }
+
+    /**
+     * Gets the islander with all information populated on the UI.
+     *
+     * @param controller The New Islander Controller.
+     * @param name       The islander's name.
+     * @return The islander with all information set.
+     */
+    private static Islander getIslander(NewIslanderController controller, String name) {
+        Islander islander = new Islander(name);
+
+        if (controller.getLeaderCheckBox().isSelected()) {
+            islander = new LeaderRole(islander);
+        }
+
+        if (controller.getOutsiderCheckBox().isSelected()) {
+            islander = new OutsiderRole(islander);
+        }
+
+        if (controller.getFlirtCheckBox().isSelected()) {
+            islander = new FlirtRole(islander);
+        }
+
+        if (controller.getDoubleFacedCheckBox().isSelected()) {
+            islander = new DoubleFacedRole(islander);
+        }
+
+        return islander;
     }
 
     /**
