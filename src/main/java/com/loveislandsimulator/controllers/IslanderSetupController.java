@@ -56,6 +56,7 @@ public class IslanderSetupController implements AppController {
 
     @FXML
     public void initialize() {
+
         try {
             GridPane gridPane = new GridPane();
             gridPane.setHgap(20);

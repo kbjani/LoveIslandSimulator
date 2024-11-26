@@ -13,11 +13,11 @@ public class GameData {
     private static GameData instance; // Singleton instance
     private final ObservableList<Islander> islanders = FXCollections.observableArrayList();
     private final List<ChallengeCommand> challenges;
-    private int completedChallengeCount;
+    private int challengeCount;
 
     private GameData() {
         challenges = new ArrayList<>();
-        completedChallengeCount = 0;
+        challengeCount = 1;
     }
 
     /**
@@ -57,6 +57,14 @@ public class GameData {
     }
 
     /**
+     * Reset game data back to initial state.
+     */
+    public void reset() {
+        this.clearIslanders();
+        challengeCount = 1;
+    }
+
+    /**
      * Adds a challenge to the list of challenges.
      * @param challenge The ChallengeCommand to be added.
      */
@@ -77,13 +85,13 @@ public class GameData {
      * @return The number of completed challenges.
      */
     public int getChallengeCount(){
-        return completedChallengeCount;
+        return challengeCount;
     }
 
     /**
      * Increments the number of completed challenges by 1.
      */
     public void incrementCompleted(){
-        completedChallengeCount++;
+        challengeCount++;
     }
 }

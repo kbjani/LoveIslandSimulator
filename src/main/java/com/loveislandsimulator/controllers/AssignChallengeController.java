@@ -50,7 +50,7 @@ public class AssignChallengeController implements AppController {
                         populateIslanders(); // run method when scene is set (on load)
 
                         // Initialize page title with game number
-                        int currentGame = GameData.getInstance().getChallengeCount() + 1;
+                        int currentGame = GameData.getInstance().getChallengeCount();
                         titleText.setText("Love Island Challenge #" + currentGame);
 
                         displaySelectedChallenge();
@@ -73,24 +73,18 @@ public class AssignChallengeController implements AppController {
     }
 
     public void onSimulateButtonClick() {
-        List<Islander> islanders = GameData.getInstance().getIslanders();
-        // TODO: Validate fields and catch errors
+        if (challengeComboBox.getValue() == null) {
+            // TODO: Display error to user
+            return;
+        }
 
+        List<Islander> islanders = GameData.getInstance().getIslanders();
         ChallengeCommand challenge = findChallenge(challengeComboBox.getValue());
-        System.out.println(challenge);
+
         for (Islander islander : islanders) {
             islander.participateInChallenge(challenge);
         }
         app.getSceneController().switchTo("challenge-results");
-    }
-
-    /**
-     * Validates the fields.
-     *
-     */
-    private boolean validateFields() {
-        //TODO: Validate that a challenge is selected.
-        return true;
     }
 
     /**

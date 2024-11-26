@@ -37,19 +37,12 @@
                     <Font size="18.0" />
                 </font>
             </Text>
-            <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0">
-                <Text fx:id="selectedChallengeName" strokeType="OUTSIDE" strokeWidth="0.0" text="Results" textAlignment="CENTER" wrappingWidth="553.8189697265625">
-                    <font>
-                        <Font size="18.0" />
-                    </font>
-                </Text>
-            </VBox>
-         <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
-            <children>
-                  <Button mnemonicParsing="false" onAction="#onNextChallengeButtonClick" prefHeight="33.0" prefWidth="131.0" text="Next Challenge" />
-               <Button mnemonicParsing="false" onAction="#onEndGameButtonClick" prefHeight="33.0" prefWidth="131.0" text="End Game" />
-            </children>
-         </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
+                <Button mnemonicParsing="false" onAction="#onNextChallengeButtonClick" prefHeight="33.0"
+                        prefWidth="131.0" text="Next Challenge"/>
+                <Button mnemonicParsing="false" onAction="#onEndGameButtonClick" prefHeight="33.0" prefWidth="131.0"
+                        text="End Game"/>
+            </HBox>
         </VBox>
     </GridPane>
 </VBox>

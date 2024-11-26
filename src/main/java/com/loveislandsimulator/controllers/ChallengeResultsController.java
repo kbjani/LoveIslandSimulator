@@ -13,7 +13,6 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ChallengeResultsController implements AppController {
     private LoveIslandSimulatorApp app;
@@ -37,7 +36,7 @@ public class ChallengeResultsController implements AppController {
                         populateIslanders(); // run method when scene is set (on load)
 
                         // Initialize page title with game number
-                        int currentGame = GameData.getInstance().getChallengeCount() + 1;
+                        int currentGame = GameData.getInstance().getChallengeCount();
                         titleText.setText("Love Island Challenge #" + currentGame);
                     }
                 });
@@ -46,7 +45,7 @@ public class ChallengeResultsController implements AppController {
     }
 
     public void onNextChallengeButtonClick() {
-        GameData.getInstance().incrementCompleted(); // increment # of games completed
+        GameData.getInstance().incrementCompleted();
         app.getSceneController().switchTo("assign-challenge");
     }
 
