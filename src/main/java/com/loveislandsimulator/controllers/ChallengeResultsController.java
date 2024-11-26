@@ -13,6 +13,7 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ChallengeResultsController implements AppController {
     private LoveIslandSimulatorApp app;
@@ -61,7 +62,10 @@ public class ChallengeResultsController implements AppController {
 
         List<Islander> islanders = GameData.getInstance().getIslanders();
 
-        //TODO: Order islanders by score (high -> low) for scoreboard.
+        // Order islanders by score in descending order
+        islanders = islanders.stream()
+                .sorted((i1, i2) -> Integer.compare(i2.getScore(), i1.getScore()))
+                .toList();
 
         if (!islanders.isEmpty()) {
             try {
