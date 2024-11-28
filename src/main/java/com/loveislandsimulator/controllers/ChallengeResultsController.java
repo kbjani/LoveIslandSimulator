@@ -4,6 +4,7 @@ import com.loveislandsimulator.controllers.base.BaseController;
 import com.loveislandsimulator.controllers.components.IslanderController;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
+import com.loveislandsimulator.utilities.ControllerUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -13,6 +14,8 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.util.List;
+
+import static com.loveislandsimulator.utilities.ControllerUtils.populateIslanders;
 
 /**
  * Controller for the Challenge Results screen of the application.
@@ -36,14 +39,9 @@ public class ChallengeResultsController extends BaseController {
             if (newScene != null) {
                 newScene.windowProperty().addListener((winObservable, oldWindow, newWindow) -> {
                     if (newWindow != null) {
-                        populateIslanders(); // run method when scene is set (on load)
-
-                        // Initialize page title with game number
-                        int currentGame = GameData.getInstance().getChallengeCount();
-                        titleText.setText("Love Island Challenge #" + currentGame);
-
-                        // End button should only be visible after 3 challenges are completed
-                        endGameButton.setVisible(GameData.getInstance().getChallengeCount() >= 3);
+                        populateIslanders();
+                        updateChallengeTitle();
+                        updateEndGameButton();
                     }
                 });
             }
@@ -60,39 +58,27 @@ public class ChallengeResultsController extends BaseController {
     }
 
     /**
-     * Populates the islanders in the scoreboard.
+     * Populates the islanders in the islanders container on page load.
      */
     private void populateIslanders() {
-        islandersContainer.getChildren().clear(); // avoid duplicating islanders on consecutive loads
-
+        String path = "/com/loveislandsimulator/components/small-islander-component.fxml";
         List<Islander> islanders = GameData.getInstance().getIslanders();
+        ControllerUtils.populateIslanders(islandersContainer, islanders, path);
+    }
 
-        // Order islanders by score in descending order
-        islanders = islanders.stream()
-                .sorted((i1, i2) -> Integer.compare(i2.getScore(), i1.getScore()))
-                .toList();
+    /**
+     * Updates the challenge title with the current challenge count.
+     */
+    private void updateChallengeTitle() {
+        titleText.setText("Love Island Challenge #" + GameData.getInstance().getChallengeCount());
+    }
 
-        if (!islanders.isEmpty()) {
-            try {
-                for (Islander islander : islanders) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/loveislandsimulator/components/small-islander-component.fxml"));
-                    GridPane islanderComponent = loader.load();
-
-                    IslanderController controller = loader.getController();
-
-                    controller.setAvatar(islander.getAvatar());
-                    controller.setName(islander.getName());
-                    controller.setStrategyField(islander.getBehaviorStrategy());
-                    controller.setRoles(islander.getRoles());
-                    controller.setScore(islander.getScore());
-
-                    islandersContainer.getChildren().add(islanderComponent);
-                }
-
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+    /**
+     * Updates the visibility of the "end game" button.
+     * The button should only appear if at least 3 challenges have been completed.
+     */
+    private void updateEndGameButton() {
+        endGameButton.setVisible(GameData.getInstance().getChallengeCount() >= 3);
     }
 }
 
