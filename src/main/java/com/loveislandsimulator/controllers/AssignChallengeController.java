@@ -78,6 +78,7 @@ public class AssignChallengeController extends BaseController {
             return;
         }
 
+        GameData.getInstance().clearChallengeLog(); // Clear previous logs
         List<Islander> islanders = GameData.getInstance().getIslanders();
         ChallengeCommand challenge = findChallenge(challengeComboBox.getValue());
 

@@ -1,6 +1,7 @@
 package com.loveislandsimulator.challenges;
 
 import com.loveislandsimulator.models.ChallengeCommand;
+import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 
 public class PhysicalChallenge implements ChallengeCommand {
@@ -9,7 +10,8 @@ public class PhysicalChallenge implements ChallengeCommand {
     public void execute(Islander islander) {
         int score = (int) (Math.random() * 15 + 1);
         islander.addPoints(score);
-        System.out.println(islander.getName() + " completed Physical Challenge and scored " + score + " points!");
+        String message = islander.getName() + " completed Physical Challenge and scored " + score + " points!";
+        GameData.getInstance().addLogMessage(message);
     }
 
     @Override

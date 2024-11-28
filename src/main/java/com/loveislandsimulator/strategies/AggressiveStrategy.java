@@ -1,6 +1,7 @@
 package com.loveislandsimulator.strategies;
 
 import com.loveislandsimulator.models.ChallengeCommand;
+import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 
 /**
@@ -26,7 +27,8 @@ public class AggressiveStrategy implements IslanderBehaviorStrategy {
      */
     @Override
     public void perform(Islander islander, ChallengeCommand challenge) {
-        System.out.println(islander.getName() + " approaches aggressively.");
+        String message = islander.getName() + " approaches aggressively.";
+        GameData.getInstance().addLogMessage(message);
         challenge.execute(islander);
     }
 }

@@ -1,6 +1,7 @@
 package com.loveislandsimulator.challenges;
 
 import com.loveislandsimulator.models.ChallengeCommand;
+import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 
 public class TriviaChallenge implements ChallengeCommand {
@@ -8,7 +9,8 @@ public class TriviaChallenge implements ChallengeCommand {
     public void execute(Islander islander) {
         int score = (int) (Math.random() * 10 + 1);
         islander.addPoints(score);
-        System.out.println(islander.getName() + " completed Trivia Challenge and scored " + score + " points!");
+        String message = islander.getName() + " completed Trivia Challenge and scored " + score + " points!";
+        GameData.getInstance().addLogMessage(message);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.loveislandsimulator.models;
 
+import com.loveislandsimulator.observers.ChallengeLogObserver;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
@@ -14,12 +15,54 @@ public class GameData {
     private static GameData instance; // Singleton instance
     private final ObservableList<Islander> islanders = FXCollections.observableArrayList();
     private final List<ChallengeCommand> challenges;
+    private final List<ChallengeLogObserver> observers = new ArrayList<>();
+    private final List<String> challengeLog = new ArrayList<>();
     private int challengeCount;
 
     private GameData() {
         challenges = new ArrayList<>();
         challengeCount = 1;
     }
+
+    //#region Observer Methods
+
+    /**
+     * Adds an observer to the list of observers for the challenge log.
+     *
+     * @param observer The observer to add.
+     */
+    public void addObserver(ChallengeLogObserver observer) {
+        observers.add(observer);
+    }
+
+    /**
+     * Notifies all observers of changes to the challenge log.
+     * Each observer is provided a copy of the current log.
+     */
+    private void notifyObservers() {
+        for (ChallengeLogObserver observer : observers) {
+            observer.onLogUpdated(new ArrayList<>(challengeLog));
+        }
+    }
+
+    /**
+     * Adds a new log message to the challenge log and notifies observers.
+     *
+     * @param message The log message to add.
+     */
+    public void addLogMessage(String message) {
+        challengeLog.add(message);
+        notifyObservers(); // Notify observers when a new log is added
+    }
+
+    /**
+     * Clears the challenge log and notifies observers.
+     */
+    public void clearChallengeLog() {
+        challengeLog.clear();
+        notifyObservers(); // Notify observers when the log is cleared
+    }
+    //#endregion
 
     /**
      * Gets the Singleton instance of the GameData.

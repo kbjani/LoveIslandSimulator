@@ -1,11 +1,14 @@
 package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.controllers.base.BaseController;
+import com.loveislandsimulator.observers.ChallengeLogObserver;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import com.loveislandsimulator.utilities.ControllerUtils;
+import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
@@ -15,7 +18,7 @@ import java.util.List;
  * Controller for the Challenge Results screen of the application.
  * Associated FXML: challenge-results.fxml
  */
-public class ChallengeResultsController extends BaseController {
+public class ChallengeResultsController extends BaseController implements ChallengeLogObserver {
     //#region FXML Properties
     @FXML
     private VBox islandersContainer;
@@ -25,10 +28,14 @@ public class ChallengeResultsController extends BaseController {
 
     @FXML
     private Button endGameButton;
+
+    @FXML
+    private ListView<String> logListView;
     //#endregion
 
     @FXML
     public void initialize() {
+        GameData.getInstance().addObserver(this);
         islandersContainer.sceneProperty().addListener((observable, oldScene, newScene) -> {
             if (newScene != null) {
                 newScene.windowProperty().addListener((winObservable, oldWindow, newWindow) -> {
@@ -40,6 +47,11 @@ public class ChallengeResultsController extends BaseController {
                 });
             }
         });
+    }
+
+    @Override
+    public void onLogUpdated(List<String> logs) {
+        logListView.setItems(FXCollections.observableArrayList(logs));
     }
 
     public void onNextChallengeButtonClick() {
