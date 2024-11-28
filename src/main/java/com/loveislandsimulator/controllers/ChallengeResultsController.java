@@ -1,8 +1,7 @@
 package com.loveislandsimulator.controllers;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
+import com.loveislandsimulator.controllers.base.BaseController;
 import com.loveislandsimulator.controllers.components.IslanderController;
-import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import javafx.fxml.FXML;
@@ -15,9 +14,12 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.util.List;
 
-public class ChallengeResultsController implements AppController {
-    private LoveIslandSimulatorApp app;
-
+/**
+ * Controller for the Challenge Results screen of the application.
+ * Associated FXML: challenge-results.fxml
+ */
+public class ChallengeResultsController extends BaseController {
+    //#region FXML Properties
     @FXML
     private VBox islandersContainer;
 
@@ -26,10 +28,7 @@ public class ChallengeResultsController implements AppController {
 
     @FXML
     private Button endGameButton;
-
-    public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
-    }
+    //#endregion
 
     @FXML
     public void initialize() {

@@ -1,8 +1,6 @@
 package com.loveislandsimulator.controllers.components;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.enums.Role;
-import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.image.Image;
@@ -33,6 +31,11 @@ public class IslanderController {
     private ImageView avatarImage;
  //#endregion
 
+    /**
+     * Sets the score field on the UI.
+     *
+     * @param score The score.
+     */
     public void setScore(int score) {
         scoreField.setText(Integer.toString(score));
     }

@@ -1,6 +1,7 @@
 package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
+import com.loveislandsimulator.controllers.base.BaseController;
 import com.loveislandsimulator.controllers.components.IslanderController;
 import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.models.ChallengeCommand;
@@ -17,9 +18,11 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Random;
 
-public class AssignChallengeController implements AppController {
-    private LoveIslandSimulatorApp app;
-
+/**
+ * Controller for the Assign Challenge screen of the application.
+ * Associated FXML: assign-challenge.fxml
+ */
+public class AssignChallengeController extends BaseController {
     //#region FXML Properties
     @FXML
     private VBox islandersContainer;
@@ -36,10 +39,6 @@ public class AssignChallengeController implements AppController {
     @FXML
     private Text titleText;
     //#endregion
-
-    public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
-    }
 
     @FXML
     public void initialize() {

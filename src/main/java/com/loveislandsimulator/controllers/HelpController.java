@@ -1,16 +1,13 @@
 package com.loveislandsimulator.controllers;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
-import com.loveislandsimulator.models.AppController;
+import com.loveislandsimulator.controllers.base.BaseController;
 import javafx.fxml.FXML;
 
-public class HelpController implements AppController {
-    private LoveIslandSimulatorApp app;
-
-    public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
-    }
-
+/**
+ * Controller for the "Help" screen of the application.
+ * Associated FXML: help-view.fxml
+ */
+public class HelpController extends BaseController {
     @FXML
     protected void onBackButtonClick() {
         app.getSceneController().switchTo("home");

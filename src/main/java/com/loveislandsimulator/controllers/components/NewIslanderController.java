@@ -12,6 +12,10 @@ import javafx.scene.image.ImageView;
 
 import java.io.InputStream;
 
+/**
+ * Controller for the New Islander component of the application. This is used when the game is first being initialized.
+ * Associated FXML: new-islander-component.fxml
+ */
 public class NewIslanderController {
     private Image image;
 

@@ -1,6 +1,7 @@
 package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.LoveIslandSimulatorApp;
+import com.loveislandsimulator.controllers.base.BaseController;
 import com.loveislandsimulator.controllers.components.IslanderController;
 import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.models.GameData;
@@ -17,9 +18,7 @@ import java.util.List;
  * Controller for the Islanders View, which is the scene that is displayed after the islanders are initialized.
  * Associated FXML: islanders-view.fxml
  */
-public class IslandersController implements AppController {
-    private LoveIslandSimulatorApp app;
-
+public class IslandersController extends BaseController {
     //#region FXML Properties
     @FXML
     private HBox islandersContainer;

@@ -22,6 +22,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import com.loveislandsimulator.utilities.Utils;
+
 /**
  * Controller for the Islander Setup view. This view is used to set all initial values for the islanders.
  * Associated FXML: islander-setup-view.fxml
@@ -30,9 +32,6 @@ public class IslanderSetupController implements AppController {
     private LoveIslandSimulatorApp app;
     private final ArrayList<String> strategies = new ArrayList<>();
     private final Random random = new Random();
-
-    // TODO: Expand on name list for more options.
-    private final String[] names = {"Alex", "Jordan", "Taylor", "Casey", "Riley", "Morgan", "Jamie", "Drew", "Sydney", "Peyton"};
     private final ArrayList<NewIslanderController> controllers = new ArrayList<>(); // Store controllers
 
     @FXML
@@ -157,7 +156,7 @@ public class IslanderSetupController implements AppController {
      */
     private void randomizeName(NewIslanderController controller){
         TextField nameField = controller.getNameField();
-        nameField.setText(names[random.nextInt(names.length)]);
+        nameField.setText(Utils.getRandomName());
     }
 
     /**

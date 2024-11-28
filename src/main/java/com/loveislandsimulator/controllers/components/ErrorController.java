@@ -1,12 +1,7 @@
 package com.loveislandsimulator.controllers.components;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
-import com.loveislandsimulator.models.AppController;
+import com.loveislandsimulator.controllers.base.BaseController;
 
-public class ErrorController implements AppController {
-    private LoveIslandSimulatorApp app;
+public class ErrorController extends BaseController {
 
-    public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
-    }
 }

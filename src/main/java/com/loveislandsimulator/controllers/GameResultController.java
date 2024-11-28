@@ -1,7 +1,6 @@
 package com.loveislandsimulator.controllers;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
-import com.loveislandsimulator.models.AppController;
+import com.loveislandsimulator.controllers.base.BaseController;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import javafx.fxml.FXML;
@@ -10,13 +9,12 @@ import javafx.scene.text.Text;
 
 import java.util.List;
 
-public class GameResultController implements AppController {
-    private LoveIslandSimulatorApp app;
-
-    public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
-    }
-
+/**
+ * Controller for the Game Result screen of the application.
+ * Associated FXML: game-result.fxml
+ */
+public class GameResultController extends BaseController {
+    //#region FXML Properties
     @FXML
     private VBox container;
 
@@ -28,6 +26,8 @@ public class GameResultController implements AppController {
 
     @FXML
     private Text thirdPlace;
+
+    //#endregion
 
     @FXML
     public void initialize() {
