@@ -15,10 +15,7 @@ import java.util.List;
  * Controller for the individual Islander component. This component is used after the islanders have been initialized.
  * Associated FXML: islander-component.fxml
  */
-public class IslanderController implements AppController {
-    private LoveIslandSimulatorApp app;
-    private Image image;
-
+public class IslanderController {
     //#region FXML Properties
     @FXML
     private Text nameField;
@@ -35,11 +32,6 @@ public class IslanderController implements AppController {
     @FXML
     private ImageView avatarImage;
  //#endregion
-
-    @Override
-    public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
-    }
 
     public void setScore(int score) {
         scoreField.setText(Integer.toString(score));

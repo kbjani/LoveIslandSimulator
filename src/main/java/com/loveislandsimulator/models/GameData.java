@@ -8,6 +8,7 @@ import java.util.List;
 
 /**
  * Singleton class for managing the game data including islanders and challenges.
+ * Design Pattern: Singleton Pattern
  */
 public class GameData {
     private static GameData instance; // Singleton instance

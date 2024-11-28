@@ -12,7 +12,7 @@ import javafx.scene.image.ImageView;
 
 import java.io.InputStream;
 
-public class NewIslanderController implements AppController {
+public class NewIslanderController {
     private Image image;
 
     //#region FXML Properties
@@ -37,9 +37,6 @@ public class NewIslanderController implements AppController {
     @FXML
     private CheckBox doubleFacedCheckBox;
     //#endregion
-
-    public void setApp(LoveIslandSimulatorApp app) {
-    }
 
     @FXML
     public void initialize() {

@@ -8,6 +8,10 @@ import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The RoleDecorator abstract class wraps around an Islander object and allows additional roles to be associated with the Islander.
+ * Design Pattern: Decorator Pattern
+ */
 public abstract class RoleDecorator extends Islander {
     protected Islander islander;
     private final Role role;

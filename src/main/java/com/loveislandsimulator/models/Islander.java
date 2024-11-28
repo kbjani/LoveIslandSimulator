@@ -8,6 +8,9 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.ArrayList;
 
+/**
+ * Represents an Islander that is a contestant in the Love Island game.
+ */
 public class Islander implements Serializable {
     private final String name;
     private int score;
@@ -43,7 +46,6 @@ public class Islander implements Serializable {
      */
     public void participateInChallenge(ChallengeCommand challenge) {
         behaviorStrategy.perform(this, challenge);
-        GameData.getInstance().incrementCompleted();
     }
 
     //#region Getters & Setters
