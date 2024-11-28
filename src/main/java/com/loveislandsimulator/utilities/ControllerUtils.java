@@ -1,16 +1,48 @@
 package com.loveislandsimulator.utilities;
 
+import com.loveislandsimulator.controllers.components.ErrorController;
 import com.loveislandsimulator.controllers.components.IslanderController;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+import javafx.scene.Scene;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.util.List;
 
 public class ControllerUtils {
+
+    /**
+     * Displays an error popup module with the given message.
+     *
+     * @param message The error message to display.
+     */
+    public static void showErrorPopup(String message) {
+        String path = "/com/loveislandsimulator/components/error-view.fxml";
+
+        try {
+            FXMLLoader loader = new FXMLLoader(ControllerUtils.class.getResource(path));
+            Pane root = loader.load();
+
+            // Set the error message
+            ErrorController controller = loader.getController();
+            controller.setErrorMessage(message);
+
+            // Show the popup
+            Stage stage = new Stage();
+            stage.initModality(Modality.APPLICATION_MODAL);
+            stage.setTitle("Error!");
+            stage.setScene(new Scene(root));
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Populates a container with islander components.
      *

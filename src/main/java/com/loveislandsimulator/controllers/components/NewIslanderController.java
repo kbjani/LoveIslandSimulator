@@ -68,7 +68,6 @@ public class NewIslanderController {
     }
 
     public Image getAvatar() {
-        System.out.println(this.image);
         return this.image;
     }
 

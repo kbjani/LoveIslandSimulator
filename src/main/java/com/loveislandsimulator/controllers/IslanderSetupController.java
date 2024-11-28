@@ -23,6 +23,8 @@ import java.util.Random;
 
 import com.loveislandsimulator.utilities.Utils;
 
+import static com.loveislandsimulator.utilities.ControllerUtils.showErrorPopup;
+
 /**
  * Controller for the Islander Setup view. This view is used to set all initial values for the islanders.
  * Associated FXML: islander-setup-view.fxml
@@ -73,7 +75,7 @@ public class IslanderSetupController extends BaseController {
 
             islandersContainer.getChildren().add(gridPane);
         } catch (IOException e) {
-            e.printStackTrace();
+            showErrorPopup("Failed to load islander components: " + e.getMessage());
         }
     }
 
@@ -98,7 +100,7 @@ public class IslanderSetupController extends BaseController {
     public void onStartButtonClick() {
         for (NewIslanderController controller : controllers) {
             if (!validateFields(controller)) {
-                return; // validation fails
+                return;
             }
 
             String name = controller.getNameField().getText();
@@ -182,12 +184,15 @@ public class IslanderSetupController extends BaseController {
         ComboBox<String> strategyComboBox = controller.getStrategyComboBox();
 
         if (nameField.getText() == null || nameField.getText().trim().isEmpty()) {
-            // TODO: Display empty name field error to user
+            showErrorPopup("Field validation failed. Please be sure the names of all islanders are populated with a value.");
             return false;
         }
 
-        // Check if a strategy is selected
-        // TODO: Display empty strategy error to user
-        return strategyComboBox.getValue() != null;
+        if (strategyComboBox.getValue() == null) {
+            showErrorPopup("Field validation failed. Please be sure all islanders have a strategy selected.");
+            return false;
+        }
+
+        return true;
     }
 }

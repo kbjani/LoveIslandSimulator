@@ -13,6 +13,8 @@ import javafx.scene.text.Text;
 import java.util.List;
 import java.util.Random;
 
+import static com.loveislandsimulator.utilities.ControllerUtils.showErrorPopup;
+
 /**
  * Controller for the Assign Challenge screen of the application.
  * Associated FXML: assign-challenge.fxml
@@ -72,7 +74,7 @@ public class AssignChallengeController extends BaseController {
      */
     public void onSimulateButtonClick() {
         if (challengeComboBox.getValue() == null) {
-            // TODO: Display error to user
+            showErrorPopup("Field validation failed. Please be sure to select a challenge from the dropdown.");
             return;
         }
 
