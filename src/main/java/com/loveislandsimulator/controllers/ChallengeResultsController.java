@@ -7,6 +7,7 @@ import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -23,6 +24,9 @@ public class ChallengeResultsController implements AppController {
     @FXML
     private Text titleText;
 
+    @FXML
+    private Button endGameButton;
+
     public void setApp(LoveIslandSimulatorApp app) {
         this.app = app;
     }
@@ -38,6 +42,9 @@ public class ChallengeResultsController implements AppController {
                         // Initialize page title with game number
                         int currentGame = GameData.getInstance().getChallengeCount();
                         titleText.setText("Love Island Challenge #" + currentGame);
+
+                        // End button should only be visible after 3 challenges are completed
+                        endGameButton.setVisible(GameData.getInstance().getChallengeCount() >= 3);
                     }
                 });
             }

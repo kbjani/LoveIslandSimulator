@@ -40,8 +40,8 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                 <Button mnemonicParsing="false" onAction="#onNextChallengeButtonClick" prefHeight="33.0"
                         prefWidth="131.0" text="Next Challenge"/>
-                <Button mnemonicParsing="false" onAction="#onEndGameButtonClick" prefHeight="33.0" prefWidth="131.0"
-                        text="End Game"/>
+                <Button fx:id="endGameButton" mnemonicParsing="false" onAction="#onEndGameButtonClick" prefHeight="33.0"
+                        prefWidth="131.0" text="End Game"/>
             </HBox>
         </VBox>
     </GridPane>
