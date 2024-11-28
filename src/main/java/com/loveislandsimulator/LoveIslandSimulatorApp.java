@@ -11,22 +11,56 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class LoveIslandSimulatorApp extends Application {
+    private static final String INITIAL_SCENE = "home";
     private SceneController sceneController;
 
     @Override
     public void start(Stage primaryStage) throws IOException {
-        // Initialize Data
-        GameData gameData = GameData.getInstance();
+        initializeGameData();
+        initializeSceneController(primaryStage);
+        sceneController.showInitialScene(INITIAL_SCENE);
+    }
 
-        // Add predefined challenges
+    /**
+     * Getter for  the scene controller.
+     *
+     * @return The scene controller.
+     */
+    public SceneController getSceneController() {
+        return sceneController;
+    }
+
+    public static void main(String[] args) {
+        launch();
+    }
+
+    /**
+     * Initializes the game data with predefined challenges.
+     */
+    private void initializeGameData() {
+        GameData gameData = GameData.getInstance(); // eager instantiation of singleton
         gameData.addChallenge(new PhysicalChallenge());
         gameData.addChallenge(new SocialChallenge());
         gameData.addChallenge(new TriviaChallenge());
+    }
 
-        // UI Startup
-        this.sceneController = new SceneController(primaryStage);
+    /**
+     * Initializes the scene controller and registers the screens of the application.
+     *
+     * @param primaryStage The primary stage.
+     * @throws IOException If any FXML file fails to load.
+     */
+    private void initializeSceneController(Stage primaryStage) throws IOException {
+        sceneController = new SceneController(primaryStage);
+        registerScenes();
+    }
 
-        // Initialize scenes
+    /**
+     * Registers all scenes with the SceneController.
+     *
+     * @throws IOException If any FXML file fails to load.
+     */
+    private void registerScenes() throws IOException {
         sceneController.addScene("home", "home-view.fxml", this);
         sceneController.addScene("help", "help-view.fxml", this);
         sceneController.addScene("islander-setup", "islander-setup-view.fxml", this);
@@ -36,15 +70,5 @@ public class LoveIslandSimulatorApp extends Application {
         sceneController.addScene("game-result", "game-result.fxml", this);
         sceneController.addScene("new-islander", "components/new-islander-component.fxml", this);
         sceneController.addScene("islander", "components/islander-component.fxml", this);
-
-        sceneController.showInitialScene("home"); // Show initial scene
-    }
-
-    public SceneController getSceneController() {
-        return sceneController;
-    }
-
-    public static void main(String[] args) {
-        launch();
     }
 }

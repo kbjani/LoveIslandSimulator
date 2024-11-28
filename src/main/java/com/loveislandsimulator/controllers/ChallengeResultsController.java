@@ -1,18 +1,14 @@
 package com.loveislandsimulator.controllers;
 
 import com.loveislandsimulator.controllers.base.BaseController;
-import com.loveislandsimulator.controllers.components.IslanderController;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import com.loveislandsimulator.utilities.ControllerUtils;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.util.List;
 
 import static com.loveislandsimulator.utilities.ControllerUtils.populateIslanders;
@@ -50,11 +46,11 @@ public class ChallengeResultsController extends BaseController {
 
     public void onNextChallengeButtonClick() {
         GameData.getInstance().incrementCompleted();
-        app.getSceneController().switchTo("assign-challenge");
+        switchToView("assign-challenge");
     }
 
     public void onEndGameButtonClick(){
-        app.getSceneController().switchTo("game-result");
+        switchToView("game-result");
     }
 
     /**

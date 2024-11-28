@@ -10,6 +10,6 @@ import javafx.fxml.FXML;
 public class HelpController extends BaseController {
     @FXML
     protected void onBackButtonClick() {
-        app.getSceneController().switchTo("home");
+        switchToView("home");
     }
 }

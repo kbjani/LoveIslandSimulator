@@ -1,8 +1,7 @@
 package com.loveislandsimulator.controllers;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
+import com.loveislandsimulator.controllers.base.BaseController;
 import com.loveislandsimulator.controllers.components.NewIslanderController;
-import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import com.loveislandsimulator.roles.DoubleFacedRole;
@@ -28,8 +27,7 @@ import com.loveislandsimulator.utilities.Utils;
  * Controller for the Islander Setup view. This view is used to set all initial values for the islanders.
  * Associated FXML: islander-setup-view.fxml
  */
-public class IslanderSetupController implements AppController {
-    private LoveIslandSimulatorApp app;
+public class IslanderSetupController extends BaseController {
     private final ArrayList<String> strategies = new ArrayList<>();
     private final Random random = new Random();
     private final ArrayList<NewIslanderController> controllers = new ArrayList<>(); // Store controllers
@@ -48,14 +46,8 @@ public class IslanderSetupController implements AppController {
         }
     }
 
-    @Override
-    public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
-    }
-
     @FXML
     public void initialize() {
-
         try {
             GridPane gridPane = new GridPane();
             gridPane.setHgap(20);
@@ -118,7 +110,7 @@ public class IslanderSetupController implements AppController {
             GameData.getInstance().addIslander(islander);
         }
 
-        app.getSceneController().switchTo("islanders-view");
+        switchToView("islanders-view");
     }
 
     /**

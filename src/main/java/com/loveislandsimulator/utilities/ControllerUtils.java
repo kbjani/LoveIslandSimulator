@@ -1,6 +1,7 @@
 package com.loveislandsimulator.utilities;
 
 import com.loveislandsimulator.controllers.components.IslanderController;
+import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.layout.GridPane;
@@ -49,13 +50,11 @@ public class ControllerUtils {
     }
 
     /**
-     * Selects a random item from a list.
-     *
-     * @param items The list of items.
-     * @param <T>   The type of items.
-     * @return A random item from the list.
+     * Gets the title for the current challenge containing the number of the current challenge.
+     * @return The challenge title text.
      */
-    public static <T> T getRandomItem(List<T> items) {
-        return items.get(RANDOM.nextInt(items.size()));
+    public static String getChallengeTitle() {
+        int currentGame = GameData.getInstance().getChallengeCount();
+        return "Love Island Challenge #" + currentGame;
     }
 }

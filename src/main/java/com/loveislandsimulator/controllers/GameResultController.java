@@ -44,11 +44,11 @@ public class GameResultController extends BaseController {
 
     public void onNewGameButtonClick(){
         GameData.getInstance().reset();
-        app.getSceneController().switchTo("islander-setup");
+        switchToView("islander-setup");
     }
 
     public void onQuitButtonClick(){
-        app.getSceneController().switchTo("home");
+        switchToView("home");
     }
 
     private void populateResults() {

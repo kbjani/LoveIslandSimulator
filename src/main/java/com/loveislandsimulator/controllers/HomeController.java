@@ -14,7 +14,7 @@ public class HomeController extends BaseController {
      * Navigates to the Islander Setup screen on click.
      */
     public void onStartButtonClick() {
-        app.getSceneController().switchTo("islander-setup");
+        switchToView("islander-setup");
     }
 
     /**
@@ -22,7 +22,7 @@ public class HomeController extends BaseController {
      * Navigates to the Help screen on click.
      */
     public void onHelpButtonClick() {
-        app.getSceneController().switchTo("help");
+        switchToView("help");
     }
 }
 

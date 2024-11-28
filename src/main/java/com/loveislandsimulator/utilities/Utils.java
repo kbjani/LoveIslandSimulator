@@ -2,8 +2,13 @@ package com.loveislandsimulator.utilities;
 
 import java.util.Random;
 
+/**
+ * Utility methods to be used across the application.
+ */
 public class Utils {
     static Random random = new Random();
+
+    // Static list of names to use to randomly populate islander names.
     private static final String[] names = {
             "Alex", "Jordan", "Taylor", "Casey", "Riley", "Morgan", "Jamie", "Drew",
             "Sydney", "Peyton", "Avery", "Quinn", "Charlie", "Cameron", "Rowan",

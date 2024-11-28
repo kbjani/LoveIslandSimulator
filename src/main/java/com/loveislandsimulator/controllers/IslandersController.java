@@ -77,16 +77,11 @@ public class IslandersController extends BaseController {
         }
     }
 
-    @Override
-    public void setApp(LoveIslandSimulatorApp app) {
-        this.app = app;
-    }
-
     /**
      * Controls the Continue button on the GUI.
      * Changes the scene to the next scene to assign challenge.
      */
     public void onContinueButtonClick() {
-        app.getSceneController().switchTo("assign-challenge");
+        switchToView("assign-challenge");
     }
 }

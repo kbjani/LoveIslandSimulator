@@ -41,12 +41,8 @@ public class AssignChallengeController extends BaseController {
             if (newScene != null) {
                 newScene.windowProperty().addListener((winObservable, oldWindow, newWindow) -> {
                     if (newWindow != null) {
-                        populateIslanders(); // run method when scene is set (on load)
-
-                        // Initialize page title with game number
-                        int currentGame = GameData.getInstance().getChallengeCount();
-                        titleText.setText("Love Island Challenge #" + currentGame);
-
+                        populateIslanders();
+                        titleText.setText(ControllerUtils.getChallengeTitle());
                         displaySelectedChallenge();
                     }
                 });
@@ -60,12 +56,20 @@ public class AssignChallengeController extends BaseController {
     }
 
 
+    /**
+     * Handles the button click action of the "random" button.
+     */
     public void onRandomButtonClick() {
         Random random = new Random();
         List<ChallengeCommand> challenges = GameData.getInstance().getChallenges();
         challengeComboBox.setValue(challenges.get(random.nextInt(challenges.size())).getName());
     }
 
+    /**
+     * Handles the button click action of the "simulate challenge" button.
+     * Each islander participates in the challenge,
+     * then the page is navigated to the results screen of that challenge.
+     */
     public void onSimulateButtonClick() {
         if (challengeComboBox.getValue() == null) {
             // TODO: Display error to user
@@ -78,7 +82,8 @@ public class AssignChallengeController extends BaseController {
         for (Islander islander : islanders) {
             islander.participateInChallenge(challenge);
         }
-        app.getSceneController().switchTo("challenge-results");
+
+        switchToView("challenge-results");
     }
 
     /**
