@@ -9,11 +9,8 @@ import javafx.scene.layout.Pane;
 
 import java.io.IOException;
 import java.util.List;
-import java.util.Random;
 
 public class ControllerUtils {
-    private static final Random RANDOM = new Random();
-
     /**
      * Populates a container with islander components.
      *

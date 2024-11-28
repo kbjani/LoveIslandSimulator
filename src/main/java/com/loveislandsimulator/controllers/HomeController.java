@@ -1,8 +1,6 @@
 package com.loveislandsimulator.controllers;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.controllers.base.BaseController;
-import com.loveislandsimulator.models.AppController;
 
 /**
  * Controller for the Home screen of the application.

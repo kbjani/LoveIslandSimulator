@@ -1,9 +1,7 @@
 package com.loveislandsimulator.controllers;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
 import com.loveislandsimulator.controllers.base.BaseController;
 import com.loveislandsimulator.controllers.components.IslanderController;
-import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.models.GameData;
 import com.loveislandsimulator.models.Islander;
 import javafx.fxml.FXML;

@@ -11,8 +11,6 @@ import javafx.scene.text.Text;
 
 import java.util.List;
 
-import static com.loveislandsimulator.utilities.ControllerUtils.populateIslanders;
-
 /**
  * Controller for the Challenge Results screen of the application.
  * Associated FXML: challenge-results.fxml

@@ -1,7 +1,5 @@
 package com.loveislandsimulator.controllers.components;
 
-import com.loveislandsimulator.LoveIslandSimulatorApp;
-import com.loveislandsimulator.models.AppController;
 import com.loveislandsimulator.strategies.IslanderBehaviorStrategy;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
